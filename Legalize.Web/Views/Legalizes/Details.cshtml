@@ -1,0 +1,24 @@
+﻿@model Legalize.Web.Data.Entities.LegalizeEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LegalizeEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info">Edit</a> |
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>
