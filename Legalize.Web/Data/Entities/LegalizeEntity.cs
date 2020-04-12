@@ -13,5 +13,7 @@ namespace Legalize.Web.Data.Entities
        
         [Display(Name = "Employee")]
         public string EmployeeId { get; set; }
+
+        public ICollection<TripEntity> Trips { get; set; }
     }
 }

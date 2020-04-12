@@ -9,6 +9,10 @@ namespace Legalize.Web.Data.Entities
     public class TripDetailEntity
     {
         public int Id { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime Date { get; set; }
         public int Amount { get; set; }
         public string Description { get; set; }

@@ -13,9 +13,14 @@ namespace Legalize.Web.Data
         {
         }
 
-        public DbSet<TripEntity> Trips { get; set; }
-
         public DbSet<LegalizeEntity> Legalizes { get; set; }
+        public DbSet<TripEntity> Trips { get; set; }
+        public DbSet<TripDetailEntity> TripDetails { get; set; }
+        public DbSet<CityEntity> Cities { get; set; }
+        public DbSet<CountryEntity> Countries { get; set; }
+        public DbSet<ExpenseTypeEntity> ExpenseTypes { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+        
 
 
         /*protected override void OnModelCreating(ModelBuilder modelBuilder)

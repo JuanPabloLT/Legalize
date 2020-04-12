@@ -11,5 +11,6 @@ namespace Legalize.Web.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public CountryEntity Country { get; set; }
+        public ICollection<TripEntity> Trips { get; set; }
     }
 }
