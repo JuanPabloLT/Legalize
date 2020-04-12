@@ -88,22 +88,9 @@ namespace Legalize.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
+                
                     _context.Update(legalizeEntity);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LegalizeEntityExists(legalizeEntity.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
             return View(legalizeEntity);
@@ -124,23 +111,10 @@ namespace Legalize.Web.Controllers
                 return NotFound();
             }
 
-            return View(legalizeEntity);
-        }
-
-        // POST: Legalizes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            LegalizeEntity legalizeEntity = await _context.Legalizes.FindAsync(id);
             _context.Legalizes.Remove(legalizeEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LegalizeEntityExists(int id)
-        {
-            return _context.Legalizes.Any(e => e.Id == id);
-        }
     }
 }
