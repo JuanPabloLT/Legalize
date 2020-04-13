@@ -1,5 +1,6 @@
 ﻿using Legalize.Web.Data;
 using Legalize.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Legalize.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LegalizesController : Controller
     {
         private readonly DataContext _context;
