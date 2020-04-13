@@ -29,9 +29,10 @@ namespace Legalize.Web.Data
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Londono", "pablo18970@gmail.com", "319 627 1487", UserType.Admin);
             UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo18970@hotmail.com", "319 627 1487", UserType.Employee);
-            await CheckExpenseTypeAsync();
-            await CheckCityeAsync();
             await CheckLegalizeAsync(Employee);
+            await CheckExpenseTypeAsync();
+            await CheckCityAsync();
+            
         }
 
 
@@ -124,38 +125,33 @@ namespace Legalize.Web.Data
             }
         }
 
-        private async Task CheckCityeAsync()
+        private async Task CheckCityAsync()
         {
-            if (!_dataContext.Legalizes.Any())
+            if (!_dataContext.Cities.Any())
             {
                 _dataContext.Cities.Add(new CityEntity
                 {
                     Name = "Medellín",
-
                 });
 
                 _dataContext.Cities.Add(new CityEntity
                 {
                     Name = "Bogotá",
-
                 });
 
                 _dataContext.Cities.Add(new CityEntity
                 {
                     Name = "Cartagena",
-
                 });
 
                 _dataContext.Cities.Add(new CityEntity
                 {
                     Name = "Cali",
-
                 });
 
                 _dataContext.Cities.Add(new CityEntity
                 {
                     Name = "Pasto",
-
                 });
 
                 await _dataContext.SaveChangesAsync();
@@ -165,21 +161,21 @@ namespace Legalize.Web.Data
 
         private async Task CheckExpenseTypeAsync()
         {
-            if (!_dataContext.Legalizes.Any())
+            if (!_dataContext.ExpenseTypes.Any())
             {
-                _dataContext.Cities.Add(new CityEntity
+                _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Estancia",
 
                 });
 
-                _dataContext.Cities.Add(new CityEntity
+                _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Manutención",
 
                 });
 
-                _dataContext.Cities.Add(new CityEntity
+                _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Locomoción",
 
