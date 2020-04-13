@@ -1,4 +1,5 @@
 ﻿using Legalize.Web.Data.Entities;
+using Legalize.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace Legalize.Web.Helpers
         Task GetUserAsync(string email);
 
 
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+        Task LogoutAsync();
+
         /*Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
@@ -34,12 +38,8 @@ namespace Legalize.Web.Helpers
 
         Task<UserEntity> GetUserAsync(Guid userId);
 
-        Task<SignInResult> LoginAsync(LoginViewModel model);
-
         Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
 
-        Task LogoutAsync();
-
-       Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);*/
+        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);*/
     }
 }
