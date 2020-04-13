@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Legalize.Web.Data;
 using Legalize.Web.Data.Entities;
+using Legalize.Web.Helpers;
 
 namespace Legalize.Web.Controllers.API
 {
@@ -15,10 +16,12 @@ namespace Legalize.Web.Controllers.API
     public class LegalizesController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly IConverterHelper _converterHelper;
 
-        public LegalizesController(DataContext context)
+        public LegalizesController(DataContext context, IConverterHelper converterHelper)
         {
             _context = context;
+            _converterHelper = converterHelper;
         }
 
         // GET: api/Legalizes
@@ -48,7 +51,7 @@ namespace Legalize.Web.Controllers.API
                 return NotFound();
             }
 
-            return Ok(legalizeEntity);
+            return Ok(_converterHelper.ToLegalizeResponse(legalizeEntity));
         }
 
         

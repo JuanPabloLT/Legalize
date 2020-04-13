@@ -28,7 +28,7 @@ namespace Legalize.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Londono", "pablo18970@gmail.com", "319 627 1487", UserType.Admin);
-            var Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo189705@hotmail.com", "319 627 1487", UserType.Employee);
+            UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo189705@hotmail.com", "319 627 1487", UserType.Employee);
             await CheckLegalizeAsync(Employee);
         }
 

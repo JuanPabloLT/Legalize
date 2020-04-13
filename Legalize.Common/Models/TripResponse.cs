@@ -4,11 +4,9 @@ using System.Text;
 
 namespace Legalize.Common.Models
 {
-    class TripResponse
+    public  class TripResponse
     {
-        public int id { get; set; }
-
-        
+        public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime StartDateLocal => StartDate.ToLocalTime();
         public DateTime? EndDate { get; set; }

@@ -8,7 +8,7 @@ namespace Legalize.Web.Data.Entities
 {
     public class TripEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Start Date")]

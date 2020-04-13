@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Legalize.Common.Models
 {
-    class TripDetailResponse
+    public  class TripDetailResponse
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Legalize.Common.Models;
 
 namespace Legalize.Web.Helpers
 {
-    interface IConverterHelper
+    public interface IConverterHelper
     {
-        LegalizeResponse ToLegalizeResponse(LegalizeEntity legalizeEntity);
+        LegalizeResponse ToLegalizeResponse(LegalizeEntity legalize);
     }
 }

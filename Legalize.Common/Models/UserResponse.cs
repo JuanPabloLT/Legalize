@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Legalize.Common.Models
 {
-    class UserResponse
+    public  class UserResponse
     {
         public string Document { get; set; }
  

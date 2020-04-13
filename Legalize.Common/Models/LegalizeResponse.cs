@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Legalize.Common.Models
 {
-    class LegalizeResponse
+    public class LegalizeResponse
     {
 
         public int Id { get; set; }
