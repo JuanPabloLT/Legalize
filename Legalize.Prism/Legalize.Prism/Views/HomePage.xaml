@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Legalize.Prism.Views.HomePage"
+             Title = "{Binding Title}">
+
+    <StackLayout Spacing="10" x:Name="layout">
+        <BoxView Color="AliceBlue" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+    </StackLayout>
+
+    <StackLayout BackgroundColor="Red">
+        <Label Text="WELCOME"
+               TextColor="Yellow"
+               FontSize="70"
+               FontAttributes="Bold"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"/>
+
+        <Button Command="{Binding StartTripCommand}" 
+                    Margin="20,20"
+                FontSize="Default"
+                FontAttributes="Bold"
+                    Text="REGISTER TRIP"/>
+    </StackLayout>
+
+
+</ContentPage>
