@@ -21,15 +21,13 @@ namespace Legalize.Web.Data
         public DbSet<ExpenseTypeEntity> ExpenseTypes { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         
-
-
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<TripEntity>()
-                .HasIndex(t => t.Id)
+            modelBuilder.Entity<LegalizeEntity>()
+                .HasIndex(t => t.EmployeeId)
                 .IsUnique();
-        }*/
+        }
     }
 }
