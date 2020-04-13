@@ -31,11 +31,8 @@ namespace Legalize.Web.Data.Entities
         public DateTime? EndDateLocal => EndDate?.ToLocalTime();
 
         public UserEntity User { get; set; }
-        public CityEntity City { get; set; }
 
         public LegalizeEntity Legalize{ get; set; }
-
-
 
         [Display(Name = "Total Amount")]
         public int TotalAmount { get; set; }
