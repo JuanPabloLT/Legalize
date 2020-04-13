@@ -37,7 +37,11 @@ namespace Legalize.Web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var legalizeEntity = await _context.Legalizes.FirstOrDefaultAsync(e => e.EmployeeId == Employee);
+            LegalizeEntity legalizeEntity = await _context.Legalizes
+                .Include(t => t.Trips)
+                .ThenInclude(t => t.TripDetails)
+                .Include(t => t.Trips)
+                .FirstOrDefaultAsync(e => e.EmployeeId == Employee);
 
             if (legalizeEntity == null)
             {
