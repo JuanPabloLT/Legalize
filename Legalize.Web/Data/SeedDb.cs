@@ -28,7 +28,9 @@ namespace Legalize.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Londono", "pablo18970@gmail.com", "319 627 1487", UserType.Admin);
-            UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo189705@hotmail.com", "319 627 1487", UserType.Employee);
+            UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo18970@hotmail.com", "319 627 1487", UserType.Employee);
+            await CheckExpenseTypeAsync();
+            await CheckCityeAsync();
             await CheckLegalizeAsync(Employee);
         }
 
@@ -73,7 +75,7 @@ namespace Legalize.Web.Data
             return user;
         }
 
-
+        
         private async Task CheckLegalizeAsync(UserEntity Employee)
         {
             if (!_dataContext.Legalizes.Any())
@@ -116,6 +118,71 @@ namespace Legalize.Web.Data
                             TotalAmount = 700000,
                         }
                     }
+                });
+
+                await _dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckCityeAsync()
+        {
+            if (!_dataContext.Legalizes.Any())
+            {
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Medellín",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Bogotá",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Cartagena",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Cali",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Pasto",
+
+                });
+
+                await _dataContext.SaveChangesAsync();
+            }
+        }
+
+
+        private async Task CheckExpenseTypeAsync()
+        {
+            if (!_dataContext.Legalizes.Any())
+            {
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Estancia",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Manutención",
+
+                });
+
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Locomoción",
+
                 });
 
                 await _dataContext.SaveChangesAsync();

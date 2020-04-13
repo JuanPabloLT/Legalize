@@ -10,5 +10,6 @@ namespace Legalize.Web.Helpers
     public interface IConverterHelper
     {
         LegalizeResponse ToLegalizeResponse(LegalizeEntity legalize);
+        LegalizeResponse ToTripResponse(LegalizeEntity legalize);
     }
 }

@@ -24,13 +24,6 @@ namespace Legalize.Web.Controllers.API
             _converterHelper = converterHelper;
         }
 
-        // GET: api/Legalizes
-        [HttpGet]
-        public IEnumerable<LegalizeEntity> GetLegalizes()
-        {
-            return _context.Legalizes;
-        }
-
         // GET: api/Legalizes/5
         [HttpGet("{Employee}")]
         public async Task<IActionResult> GetLegalizeEntity([FromRoute] string Employee)
@@ -41,17 +34,17 @@ namespace Legalize.Web.Controllers.API
             }
 
             LegalizeEntity legalizeEntity = await _context.Legalizes
-                .Include(t => t.Trips)
-                .ThenInclude(t => t.TripDetails)
-                .Include(t => t.Trips)
-                .FirstOrDefaultAsync(e => e.EmployeeId == Employee);
+                .Include(l => l.Trips)
+                .ThenInclude(l => l.TripDetails)
+                .Include(l => l.Trips)
+                .FirstOrDefaultAsync(l => l.EmployeeId == Employee);
 
             if (legalizeEntity == null)
             {
                 return NotFound();
             }
 
-            return Ok(_converterHelper.ToLegalizeResponse(legalizeEntity));
+            return Ok(_converterHelper.ToTripResponse(legalizeEntity));
         }
 
         

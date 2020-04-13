@@ -30,14 +30,12 @@ namespace Legalize.Web.Data.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime? EndDateLocal => EndDate?.ToLocalTime();
 
-        public UserEntity User { get; set; }
-
         public LegalizeEntity Legalize{ get; set; }
 
         [Display(Name = "Total Amount")]
         public int TotalAmount { get; set; }
 
-
+        public UserEntity User { get; set; }
         public ICollection<TripDetailEntity> TripDetails { get; set; }
 
 
