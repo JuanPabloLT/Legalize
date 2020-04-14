@@ -4,6 +4,7 @@ using Legalize.Prism.ViewModels;
 using Legalize.Prism.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Legalize.Common.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Legalize.Prism
@@ -24,6 +25,7 @@ namespace Legalize.Prism
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<LegalizeMasterDetailPage, LegalizeMasterDetailPageViewModel>();
