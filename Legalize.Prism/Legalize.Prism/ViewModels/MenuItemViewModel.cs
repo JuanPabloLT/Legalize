@@ -1,9 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+using Legalize.Common.Models;
 
 namespace Legalize.Prism.ViewModels
 {
