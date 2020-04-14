@@ -108,15 +108,15 @@ namespace Legalize.Web.Data
                     {
                         new TripEntity
                         {
-                            StartDate = DateTime.UtcNow,
-                            EndDate = DateTime.UtcNow.AddDays(5),
-                            TotalAmount = 500000,
+                            StartDate = DateTime.UtcNow.AddDays(20),
+                            EndDate = DateTime.UtcNow.AddDays(25),
+                            TotalAmount = 100000,
                         },
                         new TripEntity
                         {
-                            StartDate = DateTime.UtcNow.AddDays(10),
-                            EndDate = DateTime.UtcNow.AddDays(15),
-                            TotalAmount = 700000,
+                            StartDate = DateTime.UtcNow.AddDays(30),
+                            EndDate = DateTime.UtcNow.AddDays(35),
+                            TotalAmount = 800000,
                         }
                     }
                 });
