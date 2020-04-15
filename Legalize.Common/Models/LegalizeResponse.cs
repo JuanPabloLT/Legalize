@@ -14,7 +14,7 @@ namespace Legalize.Common.Models
         public List<TripResponse> Trips { get; set; }
         public UserResponse User { get; set; }
 
-        public int Total => Trips == null ? 0 : Trips.Sum(t => t.TotalAmount);
+        public int Total => Trips == null ? 0 : Trips.Sum(t => t.TotalAmountTrip);
 
         public int NumberOfTrips => Trips == null ? 0 : Trips.Count;
 

@@ -10,6 +10,7 @@ namespace Legalize.Prism.ViewModels
     {
         private readonly IApiService _apiService;
         private LegalizeResponse _legalize;
+        private bool _isRunning;
         private DelegateCommand _checkEmployeeIdCommand;
 
         public LegalizeHistoryPageViewModel(
@@ -26,6 +27,13 @@ namespace Legalize.Prism.ViewModels
             set => SetProperty(ref _legalize, value);
         }
 
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+
+
         public string EmployeeId { get; set; }
 
         public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
@@ -41,8 +49,10 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
+            IsRunning = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetLegalizeAsync(EmployeeId, url, "api", "/Legalizes");
+            IsRunning = false;
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
@@ -51,6 +61,9 @@ namespace Legalize.Prism.ViewModels
                     "Accept");
                 return;
             }
+
+            
+
 
             Legalize = (LegalizeResponse)response.Result;
         }

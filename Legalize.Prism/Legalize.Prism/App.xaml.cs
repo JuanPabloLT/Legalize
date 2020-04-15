@@ -5,6 +5,7 @@ using Legalize.Prism.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Legalize.Common.Services;
+using Syncfusion.Licensing;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Legalize.Prism
@@ -19,7 +20,7 @@ namespace Legalize.Prism
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
+            SyncfusionLicenseProvider.RegisterLicense("MjQxMTQzQDMxMzgyZTMxMmUzMElHdUYvVFZFeEZVK2V6YXdTY1J1Y1doalNMT1JJbTc2a085L2ZWTlk1TUU9");
             await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/HomePage");
         }
 

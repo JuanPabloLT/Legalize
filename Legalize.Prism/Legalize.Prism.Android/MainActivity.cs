@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.Droid;
 
 namespace Legalize.Prism.Droid
 {
@@ -15,8 +16,9 @@ namespace Legalize.Prism.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            new SfBusyIndicatorRenderer();
+
             LoadApplication(new App(new AndroidInitializer()));
         }
     }
