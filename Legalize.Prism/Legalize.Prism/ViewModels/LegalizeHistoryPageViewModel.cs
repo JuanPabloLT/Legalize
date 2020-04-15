@@ -50,9 +50,18 @@ namespace Legalize.Prism.ViewModels
             }
 
             IsRunning = true;
-            string url = App.Current.Resources["UrlAPI"].ToString();
+            var url = App.Current.Resources["UrlAPI"].ToString();
+            var connection = await _apiService.CheckConnectionAsync(url);
+            if (!connection)
+            {
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
+                return;
+            }
+
             Response response = await _apiService.GetLegalizeAsync(EmployeeId, url, "api", "/Legalizes");
             IsRunning = false;
+
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
@@ -61,6 +70,8 @@ namespace Legalize.Prism.ViewModels
                     "Accept");
                 return;
             }
+
+
 
             
 

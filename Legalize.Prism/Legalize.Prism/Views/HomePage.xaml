@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Legalize.Prism.Views.HomePage"
+             BackgroundColor="{StaticResource ColorBackground}"
              Title = "{Binding Title}">
 
     <StackLayout Spacing="10" x:Name="layout">
@@ -11,18 +12,15 @@
         HorizontalOptions="FillAndExpand" />
     </StackLayout>
 
-    <StackLayout BackgroundColor="Red">
+    <StackLayout >
         <Label Text="WELCOME"
-               TextColor="Yellow"
                FontSize="70"
                FontAttributes="Bold"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"/>
 
         <Button Command="{Binding StartTripCommand}" 
-                    Margin="20,20"
-                FontSize="Default"
-                FontAttributes="Bold"
+                    Margin="20,20" 
                     Text="REGISTER TRIP"/>
     </StackLayout>
 

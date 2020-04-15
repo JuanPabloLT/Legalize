@@ -16,13 +16,13 @@ namespace Legalize.Prism.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             new SfBusyIndicatorRenderer();
-            LoadApplication(new App(new iOSInitializer()));
+            LoadApplication(new App(new IOSInitializer()));
 
             return base.FinishedLaunching(app, options);
         }
     }
 
-    public class iOSInitializer : IPlatformInitializer
+    public class IOSInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {

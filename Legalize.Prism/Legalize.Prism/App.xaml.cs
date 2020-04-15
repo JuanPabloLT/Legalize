@@ -12,15 +12,16 @@ namespace Legalize.Prism
 {
     public partial class App
     {
-      
+
         public App() : this(null) { }
 
         public App(IPlatformInitializer initializer) : base(initializer) { }
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
+            
             SyncfusionLicenseProvider.RegisterLicense("MjQxMTQzQDMxMzgyZTMxMmUzMElHdUYvVFZFeEZVK2V6YXdTY1J1Y1doalNMT1JJbTc2a085L2ZWTlk1TUU9");
+            InitializeComponent();
             await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/HomePage");
         }
 

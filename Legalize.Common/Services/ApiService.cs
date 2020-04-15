@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Legalize.Common.Models;
-
+using Plugin.Connectivity;
 
 namespace Legalize.Common.Services
 {
@@ -50,6 +50,17 @@ namespace Legalize.Common.Services
                 };
             }
         }
+
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
     }
 
 }
