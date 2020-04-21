@@ -71,11 +71,6 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
-
-
-            
-
-
             Legalize = (LegalizeResponse)response.Result;
         }
     }

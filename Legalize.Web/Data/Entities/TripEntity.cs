@@ -29,7 +29,7 @@ namespace Legalize.Web.Data.Entities
         [Display(Name = "End Date Local")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime? EndDateLocal => EndDate?.ToLocalTime();
-
+        public CityEntity City { get; set; }
         public LegalizeEntity Legalize{ get; set; }
 
         [Display(Name = "Total Amount")]

@@ -28,6 +28,7 @@ namespace Legalize.Web.Helpers
                     StartDate = tr.StartDate,
                     EndDate = tr.EndDate,
                     TotalAmount = tr.TotalAmount,
+                    City = tr.City.Name,
                     TripDetails = tr.TripDetails.Select(tdr => new TripDetailResponse
                     {
                         Id = tdr.Id,
@@ -58,74 +59,87 @@ namespace Legalize.Web.Helpers
             };
         }
 
-       
-
-           /* public TripResponse ToTripResponse(TripEntity tripEntity)
+        public CityResponse ToCityResponse(CityEntity city)
+        {
+            if (city == null)
             {
-                return new TripResponse
-                {
-                    EndDate = tripEntity.EndDate,
-                    Id = tripEntity.Id,
-                    Qualification = tripEntity.Qualification,
-                    Remarks = tripEntity.Remarks,
-                    Source = tripEntity.Source,
-                    SourceLatitude = tripEntity.SourceLatitude,
-                    SourceLongitude = tripEntity.SourceLongitude,
-                    StartDate = tripEntity.StartDate,
-                    Target = tripEntity.Target,
-                    TargetLatitude = tripEntity.TargetLatitude,
-                    TargetLongitude = tripEntity.TargetLongitude,
-                    TripDetails = tripEntity.TripDetails?.Select(td => new TripDetailResponse
-                    {
-                        Date = td.Date,
-                        Id = td.Id,
-                        Latitude = td.Latitude,
-                        Longitude = td.Longitude
-                    }).ToList(),
-                    User = ToUserResponse(tripEntity.User)
-                };
+                return null;
             }
 
-            public LegalizeResponse ToTaxiResponse(LegalizeEntity legalizeEntity)
+            return new CityResponse
             {
-                return new LegalizeResponse
-                {
-                    Id = legalizeEntity.Id,
-                    EmployeeId = legalizeEntity.EmployeeId,
-                    Trips = legalizeEntity.Trips?.Select(t => new TripResponse
-                    {
-                        EndDate = t.EndDate,
-                        Id = t.Id,
-                        Qualification = t.Qualification,
-                        Remarks = t.Remarks,
-                        Source = t.Source,
-                        SourceLatitude = t.SourceLatitude,
-                        SourceLongitude = t.SourceLongitude,
-                        StartDate = t.StartDate,
-                        Target = t.Target,
-                        TargetLatitude = t.TargetLatitude,
-                        TargetLongitude = t.TargetLongitude,
-                        TripDetails = t.TripDetails?.Select(td => new TripDetailResponse
-                        {
-                            Date = td.Date,
-                            Id = td.Id,
-                            Latitude = td.Latitude,
-                            Longitude = td.Longitude
-                        }).ToList(),
-                        User = ToUserResponse(t.User)
-                    }).ToList(),
-                    User = ToUserResponse(taxiEntity.User)
-                };
-            }*/
-
-            
-
-
-
-
-
-
-
-
+                Name = city.Name,
+            };
         }
+
+
+
+        /* public TripResponse ToTripResponse(TripEntity tripEntity)
+         {
+             return new TripResponse
+             {
+                 EndDate = tripEntity.EndDate,
+                 Id = tripEntity.Id,
+                 Qualification = tripEntity.Qualification,
+                 Remarks = tripEntity.Remarks,
+                 Source = tripEntity.Source,
+                 SourceLatitude = tripEntity.SourceLatitude,
+                 SourceLongitude = tripEntity.SourceLongitude,
+                 StartDate = tripEntity.StartDate,
+                 Target = tripEntity.Target,
+                 TargetLatitude = tripEntity.TargetLatitude,
+                 TargetLongitude = tripEntity.TargetLongitude,
+                 TripDetails = tripEntity.TripDetails?.Select(td => new TripDetailResponse
+                 {
+                     Date = td.Date,
+                     Id = td.Id,
+                     Latitude = td.Latitude,
+                     Longitude = td.Longitude
+                 }).ToList(),
+                 User = ToUserResponse(tripEntity.User)
+             };
+         }
+
+         public LegalizeResponse ToTaxiResponse(LegalizeEntity legalizeEntity)
+         {
+             return new LegalizeResponse
+             {
+                 Id = legalizeEntity.Id,
+                 EmployeeId = legalizeEntity.EmployeeId,
+                 Trips = legalizeEntity.Trips?.Select(t => new TripResponse
+                 {
+                     EndDate = t.EndDate,
+                     Id = t.Id,
+                     Qualification = t.Qualification,
+                     Remarks = t.Remarks,
+                     Source = t.Source,
+                     SourceLatitude = t.SourceLatitude,
+                     SourceLongitude = t.SourceLongitude,
+                     StartDate = t.StartDate,
+                     Target = t.Target,
+                     TargetLatitude = t.TargetLatitude,
+                     TargetLongitude = t.TargetLongitude,
+                     TripDetails = t.TripDetails?.Select(td => new TripDetailResponse
+                     {
+                         Date = td.Date,
+                         Id = td.Id,
+                         Latitude = td.Latitude,
+                         Longitude = td.Longitude
+                     }).ToList(),
+                     User = ToUserResponse(t.User)
+                 }).ToList(),
+                 User = ToUserResponse(taxiEntity.User)
+             };
+         }*/
+
+
+
+
+
+
+
+
+
+
+    }
     }
