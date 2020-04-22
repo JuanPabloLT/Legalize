@@ -3,13 +3,17 @@ using Legalize.Common.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Legalize.Prism.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Legalize.Prism.ViewModels
 {
     public class LegalizeHistoryPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private LegalizeResponse _legalize;
+        private List<TripItemViewModel> _details;
         private bool _isRunning;
         private DelegateCommand _checkEmployeeIdCommand;
 
@@ -17,6 +21,7 @@ namespace Legalize.Prism.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
+            _navigationService = navigationService;
             _apiService = apiService;
             Title = "Legalize History";
         }
@@ -27,10 +32,17 @@ namespace Legalize.Prism.ViewModels
             set => SetProperty(ref _legalize, value);
         }
 
+
         public bool IsRunning
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public List<TripItemViewModel> Details
+        {
+            get => _details;
+            set => SetProperty(ref _details, value);
         }
 
 
@@ -72,6 +84,13 @@ namespace Legalize.Prism.ViewModels
             }
 
             Legalize = (LegalizeResponse)response.Result;
+            Details = Legalize.Trips.Select(td => new TripItemViewModel(_navigationService)
+            {
+                Id = td.Id,
+                StartDate = td.StartDateLocal,
+                EndDate = td.EndDateLocal,
+                TotalAmount = td.TotalAmountTrip
+            }).ToList();
         }
     }
 }

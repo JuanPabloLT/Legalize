@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Legalize.Prism.Views.TripDetailPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title = "{Binding Title}">
+
+    <StackLayout Padding="5">
+        
+        <StackLayout HorizontalOptions="Center" 
+                     Orientation="Horizontal">
+            <Label FontAttributes="Bold" 
+                   FontSize="Large"
+                   Text="Total Amount"/>
+            <Label FontAttributes="Bold" 
+                   FontSize="Large"
+                   Text="{Binding Trip.TotalAmountTrip, StringFormat='{0:N0}'}"/>
+        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" 
+                   Grid.Row="0"
+                   FontAttributes="Bold" 
+                   Text="Start Date"/>
+            <Label Grid.Column="1" 
+                   Grid.Row="0"
+                   Text="{Binding Trip.StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
+            <Label Grid.Column="0" 
+                   Grid.Row="1"
+                   FontAttributes="Bold" 
+                   Text="End Date"/>
+            <Label Grid.Column="1" 
+                   Grid.Row="1"
+                   Text="{Binding Trip.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
