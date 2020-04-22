@@ -9,5 +9,7 @@ namespace Legalize.Web.Helpers
     public interface ICombosHelper
     {
         IEnumerable<SelectListItem> GetComboRoles();
+        IEnumerable<SelectListItem> GetComboExpenseType();
+        IEnumerable<SelectListItem> GetComboCity();
     }
 }

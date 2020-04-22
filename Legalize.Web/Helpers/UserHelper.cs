@@ -32,7 +32,6 @@ namespace Legalize.Web.Helpers
         {
             UserEntity userEntity = new UserEntity
             {
-             
                 Document = model.Document,
                 Email = model.Username,
                 FirstName = model.FirstName,

@@ -1,4 +1,5 @@
-﻿using Legalize.Web.Helpers;
+﻿using Legalize.Web.Data.Entities;
+using Legalize.Web.Helpers;
 using Legalize.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,11 +12,16 @@ namespace Legalize.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IUserHelper _userHelper;
+        private readonly IImageHelper _imageHelper;
+        private readonly ICombosHelper _combosHelper;
 
 
-        public AccountController(
+        public AccountController(IImageHelper imageHelper,
+            ICombosHelper combosHelper,
             IUserHelper userHelper)
         {
+            _imageHelper = imageHelper;
+            _combosHelper = combosHelper;
             _userHelper = userHelper;
         }
 
@@ -55,6 +61,76 @@ namespace Legalize.Web.Controllers
             await _userHelper.LogoutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Register()
+        {
+            AddUserViewModel model = new AddUserViewModel
+            {
+                UserTypes = _combosHelper.GetComboRoles()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string path = string.Empty;
+
+                if (model.PictureFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.PictureFile, "Users");
+                }
+
+                UserEntity user = await _userHelper.AddUserAsync(model, path);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                    model.UserTypes = _combosHelper.GetComboRoles();
+                    return View(model);
+                }
+
+                LoginViewModel loginViewModel = new LoginViewModel
+                {
+                    Password = model.Password,
+                    RememberMe = false,
+                    Username = model.Username
+                };
+
+                Microsoft.AspNetCore.Identity.SignInResult result2 = await _userHelper.LoginAsync(loginViewModel);
+
+                if (result2.Succeeded)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+
+                /*var myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                var tokenLink = Url.Action("ConfirmEmail", "Account", new
+                {
+                    userid = user.Id,
+                    token = myToken
+                }, protocol: HttpContext.Request.Scheme);
+
+                var response = _mailHelper.SendMail(model.Username, "Email confirmation",
+                    $"<h1>Email Confirmation</h1>" +
+                    $"To allow the user, " +
+                    $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                if (response.IsSuccess)
+                {
+                    ViewBag.Message = "The instructions to allow your user has been sent to email.";
+                    return View(model);
+                }
+
+                ModelState.AddModelError(string.Empty, response.Message);
+            }*/
+            }
+                model.UserTypes = _combosHelper.GetComboRoles();
+                return View(model);
+        }
+        
 
         public IActionResult NotAuthorized()
         {

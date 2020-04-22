@@ -24,10 +24,22 @@ namespace Legalize.Web.Helpers
         {
             List<SelectListItem> list = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0", Text = "[Select expense type...]" },
-                new SelectListItem { Value = "1", Text = "Estancia" },
+                new SelectListItem { Value = "0", Text = "Estancia" },
                 new SelectListItem { Value = "1", Text = "Manutención" },
                 new SelectListItem { Value = "2", Text = "Locomoción" }
+            };
+
+            return list;
+        }
+
+        public IEnumerable<SelectListItem> GetComboCity()
+        {
+            List<SelectListItem> list = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "Medellín" },
+                new SelectListItem { Value = "1", Text = "Bogota" },
+                new SelectListItem { Value = "2", Text = "Cali" },
+                new SelectListItem { Value = "3", Text = "Pasto" }
             };
 
             return list;

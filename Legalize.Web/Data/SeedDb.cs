@@ -14,15 +14,18 @@ namespace Legalize.Web.Data
         private readonly DataContext _dataContext;
         private readonly IUserHelper _userHelper;
         private readonly ICitierHelper _citierHelper;
+        private readonly IExpenseTyperHelper _expenseTyperHelper;
 
         public SeedDb(
             DataContext dataContext,
             IUserHelper userHelper,
-            ICitierHelper citierHelper)
+            ICitierHelper citierHelper,
+            IExpenseTyperHelper expenseTyperHelper)
         {
             _dataContext = dataContext;
             _userHelper = userHelper;
             _citierHelper = citierHelper;
+            _expenseTyperHelper = expenseTyperHelper;
         }
 
 
@@ -32,12 +35,15 @@ namespace Legalize.Web.Data
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Londono", "pablo18970@gmail.com", "319 627 1487", UserType.Admin);
             UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo18970@hotmail.com", "319 627 1487", UserType.Employee);
+            ExpenseTypeEntity Expense1 = await _expenseTyperHelper.AddExpenseTypeAsync("Estancia");
+            ExpenseTypeEntity Expense2 = await _expenseTyperHelper.AddExpenseTypeAsync("Manutención");
+            ExpenseTypeEntity Expense3 = await _expenseTyperHelper.AddExpenseTypeAsync("Locomoción");
             CityEntity City1 = await _citierHelper.AddCityAsync("Medellín");
             CityEntity City2 = await _citierHelper.AddCityAsync("Bogotá");
             CityEntity City3 = await _citierHelper.AddCityAsync("Cali");
             CityEntity City4 = await _citierHelper.AddCityAsync("Pasto");
             await CheckLegalizeAsync(Employee, City1, City2, City3, City4);
-            await CheckExpenseTypeAsync();
+            //await CheckExpenseTypeAsync();
             
         }
 
@@ -141,7 +147,7 @@ namespace Legalize.Web.Data
         }
 
 
-        private async Task CheckExpenseTypeAsync()
+        /*private async Task CheckExpenseTypeAsync()
         {
             if (!_dataContext.ExpenseTypes.Any())
             {
@@ -165,6 +171,6 @@ namespace Legalize.Web.Data
 
                 await _dataContext.SaveChangesAsync();
             }
-        }
+        }*/
     }
 }

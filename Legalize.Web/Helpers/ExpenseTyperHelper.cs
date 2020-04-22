@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Legalize.Web.Helpers
 {
-    public class CitierHelper : ICitierHelper
+    public class ExpenseTyperHelper : IExpenseTyperHelper
     {
-        public  async Task<CityEntity> AddCityAsync(string name)
+        public async Task<ExpenseTypeEntity> AddExpenseTypeAsync(string name)
         {
-            CityEntity city = new CityEntity
+            ExpenseTypeEntity ExpenseType = new ExpenseTypeEntity
             {
                 Name = name,
             };
-            return await Task.FromResult(city);
+            return await Task.FromResult(ExpenseType);
         }
+
     }
 }
