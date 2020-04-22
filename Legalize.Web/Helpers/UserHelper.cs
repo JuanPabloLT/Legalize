@@ -1,4 +1,5 @@
-﻿using Legalize.Web.Data.Entities;
+﻿using Legalize.Common.Enums;
+using Legalize.Web.Data.Entities;
 using Legalize.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -25,6 +26,31 @@ namespace Legalize.Web.Helpers
         {
 
             return await _userManager.CreateAsync(user, password);
+        }
+
+        public async Task<UserEntity> AddUserAsync(AddUserViewModel model, string path)
+        {
+            UserEntity userEntity = new UserEntity
+            {
+             
+                Document = model.Document,
+                Email = model.Username,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PicturePath = path,
+                UserName = model.Username,
+                UserType = model.UserTypeId == 1 ? UserType.Admin : UserType.Employee
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Password);
+            if (result != IdentityResult.Success)
+            {
+                return null;
+            }
+
+            UserEntity newUser = await GetUserByEmailAsync(model.Username);
+            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
+            return newUser;
         }
 
         public async Task AddUserToRoleAsync(UserEntity user, string roleName)

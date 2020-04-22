@@ -18,9 +18,10 @@ namespace Legalize.Web.Helpers
         Task<bool> IsUserInRoleAsync(UserEntity user, string roleName);
         Task GetUserAsync(string email);
 
-
         Task<SignInResult> LoginAsync(LoginViewModel model);
         Task LogoutAsync();
+
+        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
 
         /*Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 
@@ -40,6 +41,6 @@ namespace Legalize.Web.Helpers
 
         Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
 
-        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);*/
+        */
     }
 }
