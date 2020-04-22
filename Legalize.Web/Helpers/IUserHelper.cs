@@ -23,6 +23,9 @@ namespace Legalize.Web.Helpers
 
         Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
 
+        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
+        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+
         /*Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
@@ -31,9 +34,7 @@ namespace Legalize.Web.Helpers
 
         Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token);
 
-        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
-
-        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+        
 
         Task<UserEntity> GetUserAsync(string email);
 
