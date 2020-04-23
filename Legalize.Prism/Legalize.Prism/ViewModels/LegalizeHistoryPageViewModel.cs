@@ -46,13 +46,13 @@ namespace Legalize.Prism.ViewModels
         }
 
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
 
         private async void CheckEmployeeIdAsync()
         {
-            if (string.IsNullOrEmpty(Id))
+            if (string.IsNullOrEmpty(Id.ToString()))
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Error",

@@ -34,7 +34,7 @@ namespace Legalize.Web.Controllers.API
             }
 
             LegalizeEntity legalizeEntity = await _context.Legalizes
-                .Include(l => l.Trips)
+                //.Include(l => l.Trips)
                 .FirstOrDefaultAsync(l => l.Id == Id);
 
             if (legalizeEntity == null)

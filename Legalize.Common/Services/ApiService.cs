@@ -12,7 +12,7 @@ namespace Legalize.Common.Services
     public class ApiService : IApiService
     {
 
-        public async Task<Response> GetLegalizeAsync(string Id, string urlBase, string servicePrefix, string controller)
+        public async Task<Response> GetLegalizeAsync(int Id, string urlBase, string servicePrefix, string controller)
         {
             try
             {

@@ -7,7 +7,7 @@ namespace Legalize.Common.Services
 {
     public interface IApiService
     {
-        Task<Response> GetLegalizeAsync(string Id, string urlBase, string servicePrefix, string controller);
+        Task<Response> GetLegalizeAsync(int Id, string urlBase, string servicePrefix, string controller);
         
         Task<bool> CheckConnectionAsync(string url);
 

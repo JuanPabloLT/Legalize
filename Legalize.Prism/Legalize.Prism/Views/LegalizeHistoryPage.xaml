@@ -16,7 +16,7 @@
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
         <StackLayout Orientation="Horizontal">
-            <Label Text="Employee"
+            <Label Text="IdTrip"
                    VerticalOptions="Center"/>
             <Entry HorizontalOptions="FillAndExpand" 
                    Placeholder="Enter Id trip..." 
