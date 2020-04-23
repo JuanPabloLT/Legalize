@@ -61,11 +61,8 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.TotalAmount)
                             </td>
-                            <td>
-                                @if(!string.IsNullOrEmpty(item.City.Name))
-                                 {   
-                                @Html.DisplayFor(modelItem => item.City.Name)
-                                 }
+                            <td>                                
+                                @Html.DisplayFor(modelItem => item.City.Name)  
                             </td>
 
                             <td>
@@ -93,8 +90,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#MyTable').DataTable();
+
+            var item_to_delete;
+
+            $('.deleteItem').click((e)=>{
+                item_to_delete = e.currentTarget.dataset.id;
+            });
             // Delete item
-            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Legalizes/Delete/', false);
+            $("#btnYesDelete").click(function(){
+                window.location.href = 'Legalizes/Delete/' + item_to_delete;
+            });
+            //sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Legalizes/Delete/', false);
         });
     </script>
 }
