@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Legalize.Common\Legalize.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\Users\" />
-  </ItemGroup>
-
 </Project>

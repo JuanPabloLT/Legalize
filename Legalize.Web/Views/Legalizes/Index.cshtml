@@ -4,19 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
+
+    <h2>Legalizes</h2>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-send" ></i>   Create New</a>
-</p>
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Legalizes</h3>
-            </div>
             <div class="panel-body">
                 <table class="table table-hover table-responsive table-striped" id="MyTable">
                     <thead>
@@ -25,7 +21,7 @@
                                 @Html.DisplayNameFor(model => model.Id)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Document)
+                                Employee
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.StartDate)
@@ -38,14 +34,14 @@
                             </th>
                             <th>     
                                     @Html.DisplayNameFor(model => model.City)
-                                </th>
+                             </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
+                          <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Id)
                             </td>
@@ -64,13 +60,10 @@
                             <td>                                
                                 @Html.DisplayFor(modelItem => item.City.Name)  
                             </td>
-
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon glyphicon-align-justify"></i></a>
-                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                            <td> 
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon glyphicon-align-justify"></i></a>                         
                             </td>
-                        </tr>
+                          </tr>
                         }
                     </tbody>
                 </table>

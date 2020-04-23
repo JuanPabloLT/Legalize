@@ -1,5 +1,6 @@
 ﻿using Legalize.Common.Models;
 using Legalize.Web.Data.Entities;
+using Legalize.Web.Models;
 using System.Linq;
 
 
@@ -14,7 +15,6 @@ namespace Legalize.Web.Helpers
                 Id = legalize.Id,
                 StartDate = legalize.StartDate ,
                 EndDate = legalize.EndDate,
-                TotalAmount = legalize.TotalAmount,
                 City = ToCityResponse(legalize.City),
                 User = ToUserResponse(legalize.User),
 
@@ -28,7 +28,6 @@ namespace Legalize.Web.Helpers
                 Id = legalizeEntity.Id,
                 StartDate = legalizeEntity.StartDate,
                 EndDate = legalizeEntity.EndDate,
-                TotalAmount = legalizeEntity.TotalAmount,
                 City = ToCityResponse(legalizeEntity.City),
                 User = ToUserResponse(legalizeEntity.User),
                 Trips = legalizeEntity.Trips?.Select(tr => new TripResponse
@@ -38,6 +37,7 @@ namespace Legalize.Web.Helpers
                     Amount = tr.Amount,
                     Description = tr.Description,
                     PicturePath = tr.PicturePath,
+                    ExpenseType = ToExpenseTypeResponse(tr.ExpenseType),
                 }).ToList(),
             };
         }
@@ -52,7 +52,7 @@ namespace Legalize.Web.Helpers
                 Amount = tripEntity.Amount,
                 Description = tripEntity.Description,
                 PicturePath = tripEntity.PicturePath,
-  
+                ExpenseType = ToExpenseTypeResponse(tripEntity.ExpenseType),
             };
         }
 
@@ -86,7 +86,43 @@ namespace Legalize.Web.Helpers
             };
         }
 
+        public ExpenseTypeResponse ToExpenseTypeResponse(ExpenseTypeEntity expense)
+        {
+            if (expense == null)
+            {
+                return null;
+            }
 
+            return new ExpenseTypeResponse
+            {
+                Name = expense.Name,
+            };
+        }
 
+        public TripEntity ToTipEntity(TripViewModel tripViewModel, string path, bool isNew)
+        {
+            return new TripEntity
+            {
+                Id = isNew ? 0 : tripViewModel.Id,
+                PicturePath = path,
+                Date = tripViewModel.Date,
+                Amount = tripViewModel.Amount,
+                Description = tripViewModel.Description,
+                ExpenseType = tripViewModel.ExpenseType,
+            };
+        }
+
+        public TripViewModel ToTripViewModel(TripEntity tripEntity)
+        {
+            return new TripViewModel
+            {
+                Id = tripEntity.Id,
+                PicturePath = tripEntity.PicturePath,
+                Date = tripEntity.Date,
+                Amount = tripEntity.Amount,
+                Description = tripEntity.Description,
+                ExpenseType = tripEntity.ExpenseType,
+            };
+        }
     }
 }

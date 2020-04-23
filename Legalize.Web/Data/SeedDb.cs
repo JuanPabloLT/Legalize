@@ -72,7 +72,8 @@ namespace Legalize.Web.Data
                     UserName = email,
                     PhoneNumber = phone,
                     Document = document,
-                    UserType = userType
+                    UserType = userType,
+                    PicturePath = $"~/images/Users/CaraFeliz.png",
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");
@@ -101,7 +102,6 @@ namespace Legalize.Web.Data
                 {
                     StartDate = DateTime.UtcNow.AddDays(10),
                     EndDate = DateTime.UtcNow.AddDays(15),
-                    TotalAmount = 7000,
                     City = City1,
                     User = Employee,
                     Trips = new List<TripEntity> {
@@ -148,7 +148,6 @@ namespace Legalize.Web.Data
                 {
                     StartDate = DateTime.UtcNow.AddDays(20),
                     EndDate = DateTime.UtcNow.AddDays(25),
-                    TotalAmount = 60000,
                     City = City2,
                     User = Employee2,
                     Trips = new List<TripEntity> {

@@ -1,5 +1,6 @@
 ﻿using Legalize.Web.Data;
 using Legalize.Web.Data.Entities;
+using Legalize.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,10 +15,16 @@ namespace Legalize.Web.Controllers
     public class LegalizesController : Controller
     {
         private readonly DataContext _context;
+        private readonly IImageHelper _imageHelper;
+        private readonly IConverterHelper _converterHelper;
 
-        public LegalizesController(DataContext context)
+        public LegalizesController(DataContext context,
+            IImageHelper imageHelper,
+            IConverterHelper converterHelper)
         {
             _context = context;
+            _imageHelper = imageHelper;
+            _converterHelper = converterHelper;
         }
 
         // GET: Legalizes
@@ -44,6 +51,11 @@ namespace Legalize.Web.Controllers
             }
 
             LegalizeEntity legalizeEntity = await _context.Legalizes
+                .Include(t => t.Trips)
+                .Include(t => t.City)
+                .Include(t => t.User)
+                .Include(t => t.Trips)
+                .Include(t => t.Trips).ThenInclude(t => t.ExpenseType)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (legalizeEntity == null)
             {
