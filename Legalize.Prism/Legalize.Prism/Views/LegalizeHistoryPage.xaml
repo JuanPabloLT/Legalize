@@ -19,8 +19,8 @@
             <Label Text="Employee"
                    VerticalOptions="Center"/>
             <Entry HorizontalOptions="FillAndExpand" 
-                   Placeholder="Enter employee..." 
-                   Text="{Binding EmployeeId}"
+                   Placeholder="Enter Id trip..." 
+                   Text="{Binding Id}"
                    VerticalOptions="Center"/>
             <Button Command="{Binding CheckEmployeeIdCommand}"
                     Margin="10,0"
@@ -29,7 +29,7 @@
         <Label FontAttributes="Bold" 
                FontSize="48"
                HorizontalOptions="Center"
-               Text="{Binding Legalize.Total, StringFormat='{0:N0}'}"/>
+               Text="{Binding Legalize.TotalAmountTrip, StringFormat='{0:N0}'}"/>
         <StackLayout Orientation="Horizontal">
             <Label Text="Number of trips:"/>
             <Label Text="{Binding Legalize.NumberOfTrips, StringFormat='{0:N0}'}"/>

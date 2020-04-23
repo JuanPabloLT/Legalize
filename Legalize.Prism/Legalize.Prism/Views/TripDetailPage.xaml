@@ -19,7 +19,7 @@
                    Text="Total Amount"/>
             <Label FontAttributes="Bold" 
                    FontSize="Large"
-                   Text="{Binding Trip.TotalAmountTrip, StringFormat='{0:N0}'}"/>
+                   Text="{Binding Legalize.TotalAmountTrip, StringFormat='{0:N0}'}"/>
         </StackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -36,14 +36,14 @@
                    Text="Start Date"/>
             <Label Grid.Column="1" 
                    Grid.Row="0"
-                   Text="{Binding Trip.StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
+                   Text="{Binding Legalize.StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
             <Label Grid.Column="0" 
                    Grid.Row="1"
                    FontAttributes="Bold" 
                    Text="End Date"/>
             <Label Grid.Column="1" 
                    Grid.Row="1"
-                   Text="{Binding Trip.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
+                   Text="{Binding Legalize.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
         </Grid>
     </StackLayout>
 

@@ -11,12 +11,12 @@ namespace Legalize.Web.Helpers
     public interface IUserHelper
     {
 
-        Task<UserEntity> GetUserByEmailAsync(String email);
+        Task<UserEntity> GetUserAsync(String email);
+        Task<UserEntity> GetUserAsync(Guid userId);
         Task<IdentityResult> AddUserAsync(UserEntity user, string password);
         Task CheckRoleAsync(string roleName);
         Task AddUserToRoleAsync(UserEntity user, string roleName);
         Task<bool> IsUserInRoleAsync(UserEntity user, string roleName);
-        Task GetUserAsync(string email);
 
         Task<SignInResult> LoginAsync(LoginViewModel model);
         Task LogoutAsync();

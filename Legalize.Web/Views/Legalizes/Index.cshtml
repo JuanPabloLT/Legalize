@@ -22,7 +22,7 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.EmployeeId)
+                                @Html.DisplayNameFor(model => model.Id)
                             </th>
                             <th></th>
                         </tr>
@@ -32,7 +32,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                                    @Html.DisplayFor(modelItem => item.Id)
                                 </td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>

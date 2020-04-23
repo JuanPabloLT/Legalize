@@ -10,10 +10,31 @@ namespace Legalize.Web.Data.Entities
     {
         public int Id { get; set; }
 
-       
-        [Display(Name = "Employee")]
-        public string EmployeeId { get; set; }
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
+        public DateTime StartDate { get; set; }
 
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Start Date Local")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
+        public DateTime StartDateLocal => StartDate.ToLocalTime();
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "End Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
+        public DateTime EndDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "End Date Local")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
+        public DateTime EndDateLocal => EndDate.ToLocalTime();
+        public CityEntity City { get; set; }
+
+        [Display(Name = "Total Amount")]
+        public int TotalAmount { get; set; }
+
+        public UserEntity User { get; set; }
         public ICollection<TripEntity> Trips { get; set; }
     }
 }

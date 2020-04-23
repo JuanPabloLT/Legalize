@@ -25,8 +25,8 @@ namespace Legalize.Web.Controllers.API
         }
 
         // GET: api/Legalizes/5
-        [HttpGet("{Employee}")]
-        public async Task<IActionResult> GetLegalizeEntity([FromRoute] string Employee)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetLegalizeEntity([FromRoute] int Id)
         {
             if (!ModelState.IsValid)
             {
@@ -35,16 +35,14 @@ namespace Legalize.Web.Controllers.API
 
             LegalizeEntity legalizeEntity = await _context.Legalizes
                 .Include(l => l.Trips)
-                .ThenInclude(l => l.TripDetails)
-                .Include(l => l.Trips)
-                .FirstOrDefaultAsync(l => l.EmployeeId == Employee);
+                .FirstOrDefaultAsync(l => l.Id == Id);
 
             if (legalizeEntity == null)
             {
                 return NotFound();
             }
 
-            return Ok(_converterHelper.ToTripResponse(legalizeEntity));
+            return Ok(_converterHelper.ToLegalizeResponse(legalizeEntity));
         }
 
         

@@ -12,7 +12,7 @@ namespace Legalize.Common.Services
     public class ApiService : IApiService
     {
 
-        public async Task<Response> GetLegalizeAsync(string EmployeeId, string urlBase, string servicePrefix, string controller)
+        public async Task<Response> GetLegalizeAsync(string Id, string urlBase, string servicePrefix, string controller)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace Legalize.Common.Services
                     BaseAddress = new Uri(urlBase),
                 };
 
-                string url = $"{servicePrefix}{controller}/{EmployeeId}";
+                string url = $"{servicePrefix}{controller}/{Id}";
                 HttpResponseMessage response = await client.GetAsync(url);
                 string result = await response.Content.ReadAsStringAsync();
 

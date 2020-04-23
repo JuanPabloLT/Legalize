@@ -11,32 +11,26 @@ namespace Legalize.Web.Data.Entities
         public int Id { get; set; }
 
         [DataType(DataType.DateTime)]
-        [Display(Name = "Start Date")]
+        [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
-        public DateTime StartDate { get; set; }
+        public DateTime Date { get; set; }
 
         [DataType(DataType.DateTime)]
-        [Display(Name = "Start Date Local")]
+        [Display(Name = "Date Local")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
-        public DateTime StartDateLocal => StartDate.ToLocalTime();
+        public DateTime DateLocal => Date.ToLocalTime();
 
-        [DataType(DataType.DateTime)]
-        [Display(Name = "End Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
-        public DateTime? EndDate { get; set; }
+        public int Amount { get; set; }
+        public string Description { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [Display(Name = "End Date Local")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
-        public DateTime? EndDateLocal => EndDate?.ToLocalTime();
-        public CityEntity City { get; set; }
-        public LegalizeEntity Legalize{ get; set; }
+        [Display(Name = "Picture")]
+        public string PicturePath { get; set; }
 
-        [Display(Name = "Total Amount")]
-        public int TotalAmount { get; set; }
+        public LegalizeEntity Legalize { get; set; }
 
-        public UserEntity User { get; set; }
-        public ICollection<TripDetailEntity> TripDetails { get; set; }
+        [Display(Name = "ExpenseType")]
+        public ExpenseTypeEntity ExpenseType { get; set; }
+
 
 
     }

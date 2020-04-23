@@ -46,17 +46,17 @@ namespace Legalize.Prism.ViewModels
         }
 
 
-        public string EmployeeId { get; set; }
+        public string Id { get; set; }
 
         public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
 
         private async void CheckEmployeeIdAsync()
         {
-            if (string.IsNullOrEmpty(EmployeeId))
+            if (string.IsNullOrEmpty(Id))
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Error",
-                    "You must enter a Employee Id.",
+                    "You must enter a trip Id.",
                     "Accept");
                 return;
             }
@@ -71,7 +71,7 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
-            Response response = await _apiService.GetLegalizeAsync(EmployeeId, url, "api", "/Legalizes");
+            Response response = await _apiService.GetLegalizeAsync(Id, url, "api", "/Legalizes");
             IsRunning = false;
 
             if (!response.IsSuccess)
@@ -84,12 +84,13 @@ namespace Legalize.Prism.ViewModels
             }
 
             Legalize = (LegalizeResponse)response.Result;
-            Details = Legalize.Trips.Select(td => new TripItemViewModel(_navigationService)
+            Details = Legalize.Trips.Select(tr => new TripItemViewModel(_navigationService)
             {
-                Id = td.Id,
-                StartDate = td.StartDateLocal,
-                EndDate = td.EndDateLocal,
-                TotalAmount = td.TotalAmountTrip
+                Id = tr.Id,
+                Date = tr.Date,
+                Amount = tr.Amount,
+                Description = tr.Description,
+                PicturePath = tr.PicturePath,
             }).ToList();
         }
     }

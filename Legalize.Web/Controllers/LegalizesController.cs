@@ -68,7 +68,7 @@ namespace Legalize.Web.Controllers
 
                     if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Already exists a employee with the same document.");
+                        ModelState.AddModelError(string.Empty, "Already exists a trip with the same id.");
                     }
                     else
                     {
@@ -119,7 +119,7 @@ namespace Legalize.Web.Controllers
 
                     if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Already exists a employee with the same document.");
+                        ModelState.AddModelError(string.Empty, "Already exists a trip with the same document.");
                     }
                     else
                     {

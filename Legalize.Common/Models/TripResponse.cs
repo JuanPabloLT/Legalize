@@ -8,16 +8,11 @@ namespace Legalize.Common.Models
     public  class TripResponse
     {
         public int Id { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime StartDateLocal => StartDate.ToLocalTime();
-        public DateTime? EndDate { get; set; }
-        public DateTime? EndDateLocal => EndDate?.ToLocalTime();
-        public int TotalAmount { get; set; }
-        public string City { get; set; }
-        public int TotalAmountTrip => TripDetails == null ? 0 : TripDetails.Sum(t => t.Amount);
-
-        public List<TripDetailResponse> TripDetails { get; set; }
-        public UserResponse User { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime DateLocal => Date.ToLocalTime();
+        public int Amount { get; set; }
+        public string Description { get; set; }
+        public string PicturePath { get; set; }
 
     }
 }

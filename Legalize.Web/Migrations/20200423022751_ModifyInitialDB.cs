@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Legalize.Web.Migrations
 {
-    public partial class CreateModifyDatabase : Migration
+    public partial class ModifyInitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -190,15 +190,24 @@ namespace Legalize.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EmployeeId = table.Column<string>(nullable: true),
-                    UserEntityId = table.Column<string>(nullable: true)
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    CityId = table.Column<int>(nullable: true),
+                    TotalAmount = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Legalizes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Legalizes_AspNetUsers_UserEntityId",
-                        column: x => x.UserEntityId,
+                        name: "FK_Legalizes_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Legalizes_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -210,20 +219,28 @@ namespace Legalize.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    PicturePath = table.Column<string>(nullable: true),
                     LegalizeId = table.Column<int>(nullable: true),
-                    TotalAmount = table.Column<int>(nullable: false),
-                    CityId = table.Column<int>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    ExpenseTypeId = table.Column<int>(nullable: true),
+                    CityEntityId = table.Column<int>(nullable: true),
+                    UserEntityId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trips", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Trips_Cities_CityId",
-                        column: x => x.CityId,
+                        name: "FK_Trips_Cities_CityEntityId",
+                        column: x => x.CityEntityId,
                         principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Trips_ExpenseTypes_ExpenseTypeId",
+                        column: x => x.ExpenseTypeId,
+                        principalTable: "ExpenseTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -233,39 +250,9 @@ namespace Legalize.Web.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Trips_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Trips_AspNetUsers_UserEntityId",
+                        column: x => x.UserEntityId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TripDetails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    PicturePath = table.Column<string>(nullable: true),
-                    TripId = table.Column<int>(nullable: true),
-                    ExpenseTypeId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TripDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TripDetails_ExpenseTypes_ExpenseTypeId",
-                        column: x => x.ExpenseTypeId,
-                        principalTable: "ExpenseTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TripDetails_Trips_TripId",
-                        column: x => x.TripId,
-                        principalTable: "Trips",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -310,31 +297,30 @@ namespace Legalize.Web.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Legalizes_EmployeeId",
+                name: "IX_Legalizes_CityId",
                 table: "Legalizes",
-                column: "EmployeeId",
-                unique: true,
-                filter: "[EmployeeId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Legalizes_UserEntityId",
-                table: "Legalizes",
-                column: "UserEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TripDetails_ExpenseTypeId",
-                table: "TripDetails",
-                column: "ExpenseTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TripDetails_TripId",
-                table: "TripDetails",
-                column: "TripId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Trips_CityId",
-                table: "Trips",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Legalizes_Id",
+                table: "Legalizes",
+                column: "Id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Legalizes_UserId",
+                table: "Legalizes",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_CityEntityId",
+                table: "Trips",
+                column: "CityEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_ExpenseTypeId",
+                table: "Trips",
+                column: "ExpenseTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trips_LegalizeId",
@@ -342,9 +328,9 @@ namespace Legalize.Web.Migrations
                 column: "LegalizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trips_UserId",
+                name: "IX_Trips_UserEntityId",
                 table: "Trips",
-                column: "UserId");
+                column: "UserEntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -365,7 +351,7 @@ namespace Legalize.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TripDetails");
+                name: "Trips");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -374,13 +360,10 @@ namespace Legalize.Web.Migrations
                 name: "ExpenseTypes");
 
             migrationBuilder.DropTable(
-                name: "Trips");
+                name: "Legalizes");
 
             migrationBuilder.DropTable(
                 name: "Cities");
-
-            migrationBuilder.DropTable(
-                name: "Legalizes");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -51,59 +51,9 @@ namespace Legalize.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EmployeeId");
+                    b.Property<int?>("CityId");
 
-                    b.Property<string>("UserEntityId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId")
-                        .IsUnique()
-                        .HasFilter("[EmployeeId] IS NOT NULL");
-
-                    b.HasIndex("UserEntityId");
-
-                    b.ToTable("Legalizes");
-                });
-
-            modelBuilder.Entity("Legalize.Web.Data.Entities.TripDetailEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amount");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int?>("ExpenseTypeId");
-
-                    b.Property<string>("PicturePath");
-
-                    b.Property<int?>("TripId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExpenseTypeId");
-
-                    b.HasIndex("TripId");
-
-                    b.ToTable("TripDetails");
-                });
-
-            modelBuilder.Entity("Legalize.Web.Data.Entities.TripEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CityEntityId");
-
-                    b.Property<DateTime?>("EndDate");
-
-                    b.Property<int?>("LegalizeId");
+                    b.Property<DateTime>("EndDate");
 
                     b.Property<DateTime>("StartDate");
 
@@ -113,11 +63,47 @@ namespace Legalize.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Legalizes");
+                });
+
+            modelBuilder.Entity("Legalize.Web.Data.Entities.TripEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int?>("CityEntityId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("ExpenseTypeId");
+
+                    b.Property<int?>("LegalizeId");
+
+                    b.Property<string>("PicturePath");
+
+                    b.Property<string>("UserEntityId");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("CityEntityId");
+
+                    b.HasIndex("ExpenseTypeId");
 
                     b.HasIndex("LegalizeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserEntityId");
 
                     b.ToTable("Trips");
                 });
@@ -301,20 +287,13 @@ namespace Legalize.Web.Migrations
 
             modelBuilder.Entity("Legalize.Web.Data.Entities.LegalizeEntity", b =>
                 {
-                    b.HasOne("Legalize.Web.Data.Entities.UserEntity")
+                    b.HasOne("Legalize.Web.Data.Entities.CityEntity", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("Legalize.Web.Data.Entities.UserEntity", "User")
                         .WithMany("Legalizes")
-                        .HasForeignKey("UserEntityId");
-                });
-
-            modelBuilder.Entity("Legalize.Web.Data.Entities.TripDetailEntity", b =>
-                {
-                    b.HasOne("Legalize.Web.Data.Entities.ExpenseTypeEntity", "ExpenseType")
-                        .WithMany("TripDetails")
-                        .HasForeignKey("ExpenseTypeId");
-
-                    b.HasOne("Legalize.Web.Data.Entities.TripEntity", "Trip")
-                        .WithMany("TripDetails")
-                        .HasForeignKey("TripId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Legalize.Web.Data.Entities.TripEntity", b =>
@@ -323,13 +302,17 @@ namespace Legalize.Web.Migrations
                         .WithMany("Trips")
                         .HasForeignKey("CityEntityId");
 
+                    b.HasOne("Legalize.Web.Data.Entities.ExpenseTypeEntity", "ExpenseType")
+                        .WithMany("Trips")
+                        .HasForeignKey("ExpenseTypeId");
+
                     b.HasOne("Legalize.Web.Data.Entities.LegalizeEntity", "Legalize")
                         .WithMany("Trips")
                         .HasForeignKey("LegalizeId");
 
-                    b.HasOne("Legalize.Web.Data.Entities.UserEntity", "User")
+                    b.HasOne("Legalize.Web.Data.Entities.UserEntity")
                         .WithMany("Trips")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserEntityId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

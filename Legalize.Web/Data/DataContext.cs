@@ -15,7 +15,7 @@ namespace Legalize.Web.Data
         }
         public DbSet<LegalizeEntity> Legalizes { get; set; }
         public DbSet<TripEntity> Trips { get; set; }
-        public DbSet<TripDetailEntity> TripDetails { get; set; }
+
         public DbSet<CityEntity> Cities { get; set; }
         public DbSet<ExpenseTypeEntity> ExpenseTypes { get; set; }
         
@@ -24,7 +24,7 @@ namespace Legalize.Web.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<LegalizeEntity>()
-                .HasIndex(t => t.EmployeeId)
+                .HasIndex(t => t.Id)
                 .IsUnique();
         }
     }

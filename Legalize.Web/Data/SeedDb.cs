@@ -35,6 +35,7 @@ namespace Legalize.Web.Data
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Juan", "Londono", "pablo18970@gmail.com", "319 627 1487", UserType.Admin);
             UserEntity Employee = await CheckUserAsync("2020", "Juan", "Londono", "pablo18970@hotmail.com", "319 627 1487", UserType.Employee);
+            UserEntity Employee2 = await CheckUserAsync("3030", "Juan", "Londono", "pablo18972@hotmail.com", "300 842 3521", UserType.Employee);
             ExpenseTypeEntity Expense1 = await _expenseTyperHelper.AddExpenseTypeAsync("Estancia");
             ExpenseTypeEntity Expense2 = await _expenseTyperHelper.AddExpenseTypeAsync("Manutención");
             ExpenseTypeEntity Expense3 = await _expenseTyperHelper.AddExpenseTypeAsync("Locomoción");
@@ -42,7 +43,7 @@ namespace Legalize.Web.Data
             CityEntity City2 = await _citierHelper.AddCityAsync("Bogotá");
             CityEntity City3 = await _citierHelper.AddCityAsync("Cali");
             CityEntity City4 = await _citierHelper.AddCityAsync("Pasto");
-            await CheckLegalizeAsync(Employee, City1, City2, City3, City4);
+            await CheckLegalizeAsync(Employee, Employee2, City1, City2, City3, City4);
             //await CheckExpenseTypeAsync();
             
         }
@@ -64,7 +65,7 @@ namespace Legalize.Web.Data
             string phone,
             UserType userType)
         {
-            var user = await _userHelper.GetUserByEmailAsync(email);
+            var user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
                 user = new UserEntity
@@ -91,6 +92,7 @@ namespace Legalize.Web.Data
 
         
         private async Task CheckLegalizeAsync(UserEntity Employee,
+            UserEntity Employee2,
             CityEntity City1,
             CityEntity City2,
             CityEntity City3,
@@ -100,46 +102,20 @@ namespace Legalize.Web.Data
             {
                 _dataContext.Legalizes.Add(new LegalizeEntity
                 {
-                    EmployeeId = "1020482663",
-                    Trips = new List<TripEntity>
-                    {
-                        new TripEntity
-                        {
-                            StartDate = DateTime.UtcNow,
-                            EndDate = DateTime.UtcNow.AddDays(5),
-                            TotalAmount = 500000,
-                            City = City1,
-                        },
-                        new TripEntity
-                        {
-                            StartDate = DateTime.UtcNow.AddDays(10),
-                            EndDate = DateTime.UtcNow.AddDays(15),
-                            TotalAmount = 700000,
-                            City = City2,
-                        }
-                    }
+                    StartDate = DateTime.UtcNow.AddDays(5),
+                    EndDate = DateTime.UtcNow.AddDays(10),
+                    TotalAmount = 700000,
+                    City = City1,
+                    User = Employee,
                 });
 
                 _dataContext.Legalizes.Add(new LegalizeEntity
                 {
-                    EmployeeId = "1020489293",
-                    Trips = new List<TripEntity>
-                    {
-                        new TripEntity
-                        {
-                            StartDate = DateTime.UtcNow.AddDays(20),
-                            EndDate = DateTime.UtcNow.AddDays(25),
-                            TotalAmount = 100000,
-                            City = City3,
-                        },
-                        new TripEntity
-                        {
-                            StartDate = DateTime.UtcNow.AddDays(30),
-                            EndDate = DateTime.UtcNow.AddDays(35),
-                            TotalAmount = 800000,
-                            City = City4,
-                        }
-                    }
+                    StartDate = DateTime.UtcNow.AddDays(15),
+                    EndDate = DateTime.UtcNow.AddDays(20),
+                    TotalAmount = 800000,
+                    City = City2,
+                    User = Employee2,
                 });
 
                 await _dataContext.SaveChangesAsync();

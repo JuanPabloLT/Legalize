@@ -2,6 +2,7 @@
 using Legalize.Web.Data.Entities;
 using Legalize.Web.Models;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 
 namespace Legalize.Web.Helpers
@@ -47,7 +48,7 @@ namespace Legalize.Web.Helpers
                 return null;
             }
 
-            UserEntity newUser = await GetUserByEmailAsync(model.Username);
+            UserEntity newUser = await GetUserAsync(model.Username);
             await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
             return newUser;
         }
@@ -69,12 +70,11 @@ namespace Legalize.Web.Helpers
             }
         }
 
-        public Task GetUserAsync(string email)
+        public async Task<UserEntity> GetUserAsync(Guid userId)
         {
-            throw new System.NotImplementedException();
+            return await _userManager.FindByIdAsync(userId.ToString());
         }
-
-        public async Task<UserEntity> GetUserByEmailAsync(string email)
+        public async Task<UserEntity> GetUserAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
         }
