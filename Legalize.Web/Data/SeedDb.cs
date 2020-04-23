@@ -41,9 +41,9 @@ namespace Legalize.Web.Data
             ExpenseTypeEntity Expense3 = await _expenseTyperHelper.AddExpenseTypeAsync("Locomoción");
             CityEntity City1 = await _citierHelper.AddCityAsync("Medellín");
             CityEntity City2 = await _citierHelper.AddCityAsync("Bogotá");
+            await CheckLegalizeAsync(Employee, Employee2, City1, City2, Expense1, Expense2, Expense3);
             await CheckCityAsync();
-            await CheckExpenseTypeAsync();
-            await CheckLegalizeAsync(Employee, Employee2, City1, City2, Expense1, Expense2, Expense3); 
+           // await CheckExpenseTypeAsync();
         }
 
         private async Task CheckRolesAsync()

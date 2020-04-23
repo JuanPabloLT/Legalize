@@ -33,6 +33,7 @@ namespace Legalize.Web.Data.Entities
 
         [Display(Name = "Total Amount")]
         public int TotalAmount { get; set; }
+        public int TotalAmountTrip => Trips == null ? 0 : Trips.Sum(t => t.Amount);
 
         public UserEntity User { get; set; }
         public ICollection<TripEntity> Trips { get; set; }

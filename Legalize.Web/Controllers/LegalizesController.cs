@@ -2,6 +2,7 @@
 using Legalize.Web.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -20,9 +21,18 @@ namespace Legalize.Web.Controllers
         }
 
         // GET: Legalizes
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Legalizes.ToListAsync());
+        }*/
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Legalizes
+                .Include(t => t.Trips)
+                .Include(t => t.City)
+                .Include(t => t.User)
+                .ToListAsync());
         }
 
         // GET: Legalizes/Details/5
