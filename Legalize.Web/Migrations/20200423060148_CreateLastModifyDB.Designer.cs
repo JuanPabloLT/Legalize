@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Legalize.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200423022751_ModifyInitialDB")]
-    partial class ModifyInitialDB
+    [Migration("20200423060148_CreateLastModifyDB")]
+    partial class CreateLastModifyDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

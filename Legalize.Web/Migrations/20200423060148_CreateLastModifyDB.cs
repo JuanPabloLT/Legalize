@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Legalize.Web.Migrations
 {
-    public partial class ModifyInitialDB : Migration
+    public partial class CreateLastModifyDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

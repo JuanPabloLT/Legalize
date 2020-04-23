@@ -41,13 +41,10 @@ namespace Legalize.Web.Data
             ExpenseTypeEntity Expense3 = await _expenseTyperHelper.AddExpenseTypeAsync("Locomoción");
             CityEntity City1 = await _citierHelper.AddCityAsync("Medellín");
             CityEntity City2 = await _citierHelper.AddCityAsync("Bogotá");
-            CityEntity City3 = await _citierHelper.AddCityAsync("Cali");
-            CityEntity City4 = await _citierHelper.AddCityAsync("Pasto");
-            await CheckLegalizeAsync(Employee, Employee2, City1, City2, City3, City4);
-            //await CheckExpenseTypeAsync();
-            
+            await CheckCityAsync();
+            await CheckExpenseTypeAsync();
+            await CheckLegalizeAsync(Employee, Employee2, City1, City2, Expense1, Expense2, Expense3); 
         }
-
 
         private async Task CheckRolesAsync()
         {
@@ -55,7 +52,6 @@ namespace Legalize.Web.Data
             await _userHelper.CheckRoleAsync(UserType.Employee.ToString());
 
         }
-
 
         private async Task<UserEntity> CheckUserAsync(
             string document,
@@ -95,27 +91,103 @@ namespace Legalize.Web.Data
             UserEntity Employee2,
             CityEntity City1,
             CityEntity City2,
-            CityEntity City3,
-            CityEntity City4)
+            ExpenseTypeEntity Expense1,
+            ExpenseTypeEntity Expense2,
+            ExpenseTypeEntity Expense3)
         {
             if (!_dataContext.Legalizes.Any())
             {
                 _dataContext.Legalizes.Add(new LegalizeEntity
                 {
-                    StartDate = DateTime.UtcNow.AddDays(5),
-                    EndDate = DateTime.UtcNow.AddDays(10),
-                    TotalAmount = 700000,
+                    StartDate = DateTime.UtcNow.AddDays(10),
+                    EndDate = DateTime.UtcNow.AddDays(15),
+                    TotalAmount = 7000,
                     City = City1,
                     User = Employee,
-                });
+                    Trips = new List<TripEntity> {
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(11),
+                            Amount = 100000,
+                            Description = "Estancia en punto cero",
+                            PicturePath = $"~/images/TripsPictures/Estancia1.png",
+                            ExpenseType = Expense1,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(12),
+                            Amount = 35000,
+                            Description = "Comida en Perrito Mariela",
+                            PicturePath = $"~/images/TripsPictures/Manutencion1.jpg",
+                            ExpenseType = Expense2,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(11),
+                            Amount = 30000,
+                            Description = "Viaje de ida",
+                            PicturePath = $"~/images/TripsPictures/Locomocion1.jpg",
+                            ExpenseType = Expense3,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(14),
+                            Amount = 30000,
+                            Description = "Viaje de vuelta",
+                            PicturePath = $"~/images/TripsPictures/Locomocion1.jpg",
+                            ExpenseType = Expense3,
+
+                        },
+                    }
+                }) ;
 
                 _dataContext.Legalizes.Add(new LegalizeEntity
                 {
-                    StartDate = DateTime.UtcNow.AddDays(15),
-                    EndDate = DateTime.UtcNow.AddDays(20),
-                    TotalAmount = 800000,
+                    StartDate = DateTime.UtcNow.AddDays(20),
+                    EndDate = DateTime.UtcNow.AddDays(25),
+                    TotalAmount = 60000,
                     City = City2,
                     User = Employee2,
+                    Trips = new List<TripEntity> {
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(22),
+                            Amount = 100000,
+                            Description = "Estancia en el bronz bogotá",
+                            PicturePath = $"~/images/TripsPictures/Estancia1.png",
+                            ExpenseType = Expense1,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(23),
+                            Amount = 24000,
+                            Description = "Comida de china",
+                            PicturePath = $"~/images/TripsPictures/Manutencion1.jpg",
+                            ExpenseType = Expense2,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(21),
+                            Amount = 60000,
+                            Description = "Viaje de ida a la capital",
+                            PicturePath = $"~/images/TripsPictures/Locomocion1.jpg",
+                            ExpenseType = Expense3,
+
+                        },
+                        new TripEntity
+                        {
+                            Date = DateTime.UtcNow.AddDays(24),
+                            Amount = 60000,
+                            Description = "Viaje de vuelta de la capital",
+                            PicturePath = $"~/images/TripsPictures/Locomocion1.jpg",
+                            ExpenseType = Expense3,
+                        },
+                    }
                 });
 
                 await _dataContext.SaveChangesAsync();
@@ -123,30 +195,41 @@ namespace Legalize.Web.Data
         }
 
 
-        /*private async Task CheckExpenseTypeAsync()
+        private async Task CheckExpenseTypeAsync()
         {
             if (!_dataContext.ExpenseTypes.Any())
             {
                 _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Estancia",
-
                 });
-
                 _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Manutención",
-
                 });
 
                 _dataContext.ExpenseTypes.Add(new ExpenseTypeEntity
                 {
                     Name = "Locomoción",
-
                 });
-
                 await _dataContext.SaveChangesAsync();
             }
-        }*/
+        }
+
+        private async Task CheckCityAsync()
+        {
+            if (!_dataContext.Cities.Any())
+            {
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Cali",
+                });
+                _dataContext.Cities.Add(new CityEntity
+                {
+                    Name = "Pasto",
+                });
+                await _dataContext.SaveChangesAsync();
+            }
+        }
     }
 }

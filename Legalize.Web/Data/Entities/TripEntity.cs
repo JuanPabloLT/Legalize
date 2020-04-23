@@ -31,7 +31,5 @@ namespace Legalize.Web.Data.Entities
         [Display(Name = "ExpenseType")]
         public ExpenseTypeEntity ExpenseType { get; set; }
 
-
-
     }
 }
