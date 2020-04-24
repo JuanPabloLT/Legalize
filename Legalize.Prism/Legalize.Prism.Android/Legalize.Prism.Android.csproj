@@ -71,6 +71,7 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +99,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Legalize.Common\Legalize.Common.csproj">
+      <Project>{4D99935E-CF82-4A30-8CC1-D07237888761}</Project>
+      <Name>Legalize.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Legalize.Prism\Legalize.Prism.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>Legalize.Prism</Name>

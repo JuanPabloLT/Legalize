@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalize.Common", "Legalize
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalize.Web", "Legalize.Web\Legalize.Web.csproj", "{A63D049F-1918-41F4-B26B-0C2C391D86E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalize.Prism", "Legalize.Prism\Legalize.Prism\Legalize.Prism.csproj", "{7AA0ED0B-F356-4D2A-9EC6-7A461048E5B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalize.Prism", "Legalize.Prism\Legalize.Prism\Legalize.Prism.csproj", "{7AA0ED0B-F356-4D2A-9EC6-7A461048E5B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legalize.Prism.Android", "Legalize.Prism\Legalize.Prism.Android\Legalize.Prism.Android.csproj", "{0B8FFE3E-E4F7-4538-ADC1-18AAF9B040B5}"
 EndProject

@@ -16,7 +16,6 @@ namespace Legalize.Web.Helpers
 
         TripResponse ToTripResponse(TripEntity tripEntity);
 
-
         CityResponse ToCityResponse(CityEntity city);
         UserResponse ToUserResponse(UserEntity user);
         TripEntity ToTipEntity(TripViewModel tripViewModel, string path, bool isNew);

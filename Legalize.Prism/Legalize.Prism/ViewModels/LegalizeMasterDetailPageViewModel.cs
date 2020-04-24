@@ -1,4 +1,5 @@
 ﻿using Legalize.Common.Models;
+using Legalize.Prism.Helpers;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,19 +36,19 @@ namespace Legalize.Prism.ViewModels
                 {
                     Icon = "ic_add_circle",
                     PageName = "HomePage",
-                    Title = "Add Trip Record"
+                    Title = Languages.AddTripRecord
                 },
                 new Menu
                 {
                     Icon = "ic_view_list",
                     PageName = "LegalizeHistoryPage",
-                    Title = "See Employee History"
+                    Title = Languages.SeeEmployeeHistory
                 },
                 new Menu
                 {
                     Icon = "ic_build",
                     PageName = "ModifyUserPage",
-                    Title = "Modify User"
+                    Title = Languages.ModifyUser
                 },
                 /*new Menu
                 {
@@ -59,7 +60,7 @@ namespace Legalize.Prism.ViewModels
                 {
                     Icon = "ic_exit_to_app",
                     PageName = "LoginPage",
-                    Title = "Log in"
+                    Title = Languages.Login
                 }
             };
 

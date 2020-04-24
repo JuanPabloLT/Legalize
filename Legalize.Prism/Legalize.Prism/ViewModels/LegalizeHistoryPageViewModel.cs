@@ -5,6 +5,7 @@ using Prism.Navigation;
 using Legalize.Prism.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using Legalize.Prism.Helpers;
 
 namespace Legalize.Prism.ViewModels
 {
@@ -23,7 +24,7 @@ namespace Legalize.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Legalize History";
+            Title = Languages.LegalizeHistory;
             LoadLegalizesAsync();
         }
 
@@ -56,7 +57,7 @@ namespace Legalize.Prism.ViewModels
             if (!connection)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -65,11 +66,7 @@ namespace Legalize.Prism.ViewModels
             IsRunning = false;
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
             }
 
             var legalize = (List<LegalizeResponse>)response.Result;

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Legalize.Prism.Helpers;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -12,7 +13,7 @@ namespace Legalize.Prism.ViewModels
         public LoginPageViewModel(INavigationService navigationServices)
             : base(navigationServices)
         {
-            Title = "Login";
+            Title = Languages.Login;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Legalize.Common.Models;
 using Legalize.Common.Services;
+using Legalize.Prism.Helpers;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -18,7 +19,7 @@ namespace Legalize.Prism.ViewModels
             IApiService apiService) : base(navigationService)
         {
             _apiService = apiService;
-            Title = "Trip Detail";
+            Title = Languages.TripDetail;
         }
 
         public LegalizeResponse Trip
@@ -35,7 +36,7 @@ namespace Legalize.Prism.ViewModels
             if (parameters.ContainsKey("legalize"))
             {
                 _trip = parameters.GetValue<LegalizeResponse>("legalize");
-                Title = "Trip"+" "+_trip.Id.ToString()+" from" +" "+_trip.User.FirstName+"";
+                Title = Languages.Trip+ " "+_trip.Id.ToString()+ Languages.From+ " "+_trip.User.FirstName+"";
             }
         }
 

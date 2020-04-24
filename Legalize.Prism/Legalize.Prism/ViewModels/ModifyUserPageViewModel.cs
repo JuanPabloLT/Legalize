@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Legalize.Prism.Helpers;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -12,7 +13,7 @@ namespace Legalize.Prism.ViewModels
         public ModifyUserPageViewModel(INavigationService navigationServices)
             : base(navigationServices)
         {
-            Title = "Modify User";
+            Title = Languages.ModifyUser;
         }
     }
 }

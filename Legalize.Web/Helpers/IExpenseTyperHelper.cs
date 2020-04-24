@@ -9,5 +9,6 @@ namespace Legalize.Web.Helpers
     public interface IExpenseTyperHelper
     {
         Task<ExpenseTypeEntity> AddExpenseTypeAsync(string name);
+        Task<ExpenseTypeEntity> GetExpenseTypeAsync(int Id);
     }
 }

@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Legalize.Web.Data;
 using Legalize.Web.Data.Entities;
 using Legalize.Web.Helpers;
+using Legalize.Common.Models;
+using System.Globalization;
+using Legalize.Web.Resources;
 
 namespace Legalize.Web.Controllers.API
 {
@@ -18,11 +21,19 @@ namespace Legalize.Web.Controllers.API
     {
         private readonly DataContext _context;
         private readonly IConverterHelper _converterHelper;
+        private readonly IUserHelper _userHelper;
+        private readonly ICitierHelper _citierHelper;
 
-        public LegalizesController(DataContext context, IConverterHelper converterHelper)
+        public LegalizesController(DataContext context
+            ,IConverterHelper converterHelper
+            ,IUserHelper userHelper
+            ,ICitierHelper citierHelper)
         {
             _context = context;
             _converterHelper = converterHelper;
+            _userHelper = userHelper;
+            _citierHelper = citierHelper;
+
         }
 
         // GET: api/Legalizes/5
@@ -64,6 +75,44 @@ namespace Legalize.Web.Controllers.API
             return Ok(_converterHelper.ToLegalizeResponse(legalizes));
         }
 
+        // POST: api/Legalizes/
+        [HttpPost]
+        public async Task<IActionResult> PostLegalizeEntity([FromBody] LegalizeRequest legalizeRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            CultureInfo cultureInfo = new CultureInfo(legalizeRequest.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+            UserEntity userEntity = await _userHelper.GetUserAsync(legalizeRequest.UserId);
+            /*if (userEntity == null)
+            {
+                return BadRequest(Resource.UserDoesntExists);
+            }*/
+
+            CityEntity cityEntity = await _citierHelper.GetCityAsync(legalizeRequest.City);
+            if (cityEntity == null)
+            {
+                return BadRequest(Resource.CityDoesntExists);
+            }
+
+            LegalizeEntity legalizeEntity = new LegalizeEntity
+            {
+                StartDate = legalizeRequest.StartDate,
+                EndDate = legalizeRequest.EndDate,
+                City = cityEntity,
+                User = userEntity
+            };
+
+            _context.Legalizes.Add(legalizeEntity);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
+
+
+
 }
