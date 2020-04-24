@@ -11,7 +11,6 @@ namespace Legalize.Common.Models
         public string Description { get; set; }
         public string PicturePath { get; set; }
         public int ExpenseType { get; set; }
-        public Guid UserId { get; set; }
         public int LegalizeId { get; set; }
         public string CultureInfo { get; set; }
 

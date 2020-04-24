@@ -8,7 +8,7 @@ namespace Legalize.Web.Helpers
 {
     public interface ILegalizeHelper
     {
-        Task<LegalizeEntity> GetLegalizeAsync(int EmployeeId);
+        Task<LegalizeEntity> GetLegalizeAsync(int LegalizeId);
     }
     
 }

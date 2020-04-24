@@ -29,7 +29,7 @@ namespace Legalize.Web.Helpers
         {
             ExpenseTypeEntity expenseTypeEntity = await _context.ExpenseTypes
                 .FirstOrDefaultAsync(m => m.Id == Id);
-            return expenseTypeEntity;
+            return await Task.FromResult(expenseTypeEntity);
         }
 
     }

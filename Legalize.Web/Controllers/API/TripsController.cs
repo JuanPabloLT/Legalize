@@ -38,56 +38,41 @@ namespace Legalize.Web.Controllers.API
             _expenseTyperHelper = expenseTyperHelper;
         }
 
+        // POST: api/Trips/
         [HttpPost]
-        public async Task<IActionResult> PostTrip([FromBody] TripRequest request)
+        public async Task<IActionResult> PostTripEntity([FromBody] TripRequest tripRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            CultureInfo cultureInfo = new CultureInfo(tripRequest.CultureInfo);
             Resource.Culture = cultureInfo;
 
-
-            UserEntity userEntity = await _userHelper.GetUserAsync(request.UserId);
-            if (userEntity == null)
-            {
-                return BadRequest(Resource.UserDoesntExists);
-            }
-
-            LegalizeEntity legalizeEntity = await _legalizeHelper.GetLegalizeAsync(request.LegalizeId);
+            LegalizeEntity legalizeEntity = await _legalizeHelper.GetLegalizeAsync(tripRequest.LegalizeId);
             if (legalizeEntity == null)
             {
                 return BadRequest(Resource.LegalizeDoesntExists);
             }
 
-            ExpenseTypeEntity expenseTypeEntity = await _expenseTyperHelper.GetExpenseTypeAsync(request.ExpenseType);
+            ExpenseTypeEntity expenseTypeEntity = await _expenseTyperHelper.GetExpenseTypeAsync(tripRequest.ExpenseType);
             if (expenseTypeEntity == null)
             {
                 return BadRequest(Resource.ExpenseTypeDoesntExists);
             }
 
-            
+            TripEntity tripEntity = new TripEntity
+            {
+                Date = tripRequest.Date,
+                Amount = tripRequest.Amount ,
+                Description = tripRequest.Description,
+                PicturePath = tripRequest.PicturePath,
+                Legalize = legalizeEntity,
+                ExpenseType = expenseTypeEntity
+            };
 
-            TripEntity tripEntity = await _context.Trips
-                .Include(t => t.Legalize)
-                .FirstOrDefaultAsync(p => p.Legalize.User.Id == request.UserId.ToString() && p.Legalize.Id == request.LegalizeId);
-
-            
-                tripEntity = new TripEntity
-                {
-                    Date = request.Date,
-                    Amount = request.Amount,
-                    Description = request.Description,
-                    PicturePath = request.PicturePath,
-                    Legalize = legalizeEntity,
-                    ExpenseType = expenseTypeEntity,
-                };
-
-                _context.Trips.Add(tripEntity);
-            
-
+            _context.Trips.Add(tripEntity);
             await _context.SaveChangesAsync();
             return NoContent();
         }
