@@ -141,6 +141,9 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -152,6 +155,15 @@
   </data>
   <data name="Document" xml:space="preserve">
     <value>Document</value>
+  </data>
+  <data name="EmailConfirmationBody" xml:space="preserve">
+    <value>To allow the user, plase click in this link</value>
+  </data>
+  <data name="EmailConfirmationSent" xml:space="preserve">
+    <value>The instructions to allow your user has been sent to email</value>
+  </data>
+  <data name="EmailConfirmationSubject" xml:space="preserve">
+    <value>Email confirmation</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -201,13 +213,28 @@
   <data name="PictureFile" xml:space="preserve">
     <value>Picture File</value>
   </data>
+  <data name="RecoverPasswordBody" xml:space="preserve">
+    <value>To reset the password click in this link</value>
+  </data>
+  <data name="RecoverPasswordEmailSent" xml:space="preserve">
+    <value>The instructions to recover your password has been sent to email</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>User password reset</value>
+  </data>
   <data name="RegisterNewUser" xml:space="preserve">
     <value>Register new user</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>User Already Exists</value>
+  </data>
   <data name="UserDoesntExists" xml:space="preserve">
     <value>User doesn't exists</value>
+  </data>
+  <data name="UserNotFoundError" xml:space="preserve">
+    <value>User not found error</value>
   </data>
 </root>

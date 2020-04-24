@@ -24,9 +24,10 @@ namespace Legalize.Web.Helpers
         {
             List<SelectListItem> list = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0", Text = "Estancia" },
-                new SelectListItem { Value = "1", Text = "Manutención" },
-                new SelectListItem { Value = "2", Text = "Locomoción" }
+                new SelectListItem { Value = "0", Text = "[Select a role...]" },
+                new SelectListItem { Value = "1", Text = "Estancia" },
+                new SelectListItem { Value = "2", Text = "Manutención" },
+                new SelectListItem { Value = "3", Text = "Locomoción" }
             };
 
             return list;
@@ -36,10 +37,9 @@ namespace Legalize.Web.Helpers
         {
             List<SelectListItem> list = new List<SelectListItem>
             {
-                new SelectListItem { Value = "0", Text = "Medellín" },
-                new SelectListItem { Value = "1", Text = "Bogota" },
-                new SelectListItem { Value = "2", Text = "Cali" },
-                new SelectListItem { Value = "3", Text = "Pasto" }
+                new SelectListItem { Value = "0", Text = "[Select a role...]" },
+                new SelectListItem { Value = "1", Text = "Medellín" },
+                new SelectListItem { Value = "2", Text = "Bogota" }
             };
 
             return list;

@@ -123,8 +123,20 @@
   <data name="AddTripRecord" xml:space="preserve">
     <value>Add Trip Record</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
   <data name="ConnectionError" xml:space="preserve">
     <value>Check Internet Connection</value>
+  </data>
+  <data name="EmailConfirmationBody" xml:space="preserve">
+    <value>To allow the user, plase click in this link</value>
+  </data>
+  <data name="EmailConfirmationSent" xml:space="preserve">
+    <value>The instructions to allow your user has been sent to email</value>
+  </data>
+  <data name="EmailConfirmationSubject" xml:space="preserve">
+    <value>Email confirmation</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>

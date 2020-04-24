@@ -168,4 +168,16 @@
   <data name="Menu" xml:space="preserve">
     <value>Menú</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+  </data>
+  <data name="EmailConfirmationBody" xml:space="preserve">
+    <value>Para permitir al usuario, haga clic en este enlace</value>
+  </data>
+  <data name="EmailConfirmationSubject" xml:space="preserve">
+    <value>Enviar confirmación por correo</value>
+  </data>
+  <data name="EmailConfirmationSent" xml:space="preserve">
+    <value>Las instrucciones para permitir que su usuario haya sido enviado por correo electrónico</value>
+  </data>
 </root>

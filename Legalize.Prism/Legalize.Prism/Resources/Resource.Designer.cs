@@ -79,11 +79,47 @@ namespace Legalize.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Email.
+        /// </summary>
+        public static string ConfirmEmail {
+            get {
+                return ResourceManager.GetString("ConfirmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check Internet Connection.
         /// </summary>
         public static string ConnectionError {
             get {
                 return ResourceManager.GetString("ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To allow the user, plase click in this link.
+        /// </summary>
+        public static string EmailConfirmationBody {
+            get {
+                return ResourceManager.GetString("EmailConfirmationBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The instructions to allow your user has been sent to email.
+        /// </summary>
+        public static string EmailConfirmationSent {
+            get {
+                return ResourceManager.GetString("EmailConfirmationSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email confirmation.
+        /// </summary>
+        public static string EmailConfirmationSubject {
+            get {
+                return ResourceManager.GetString("EmailConfirmationSubject", resourceCulture);
             }
         }
         

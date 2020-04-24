@@ -210,4 +210,31 @@
   <data name="CityDoesntExists" xml:space="preserve">
     <value>Cidade não existe</value>
   </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>O usuário já existe</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirmar email</value>
+  </data>
+  <data name="EmailConfirmationBody" xml:space="preserve">
+    <value>Para permitir ao usuário, clique neste link</value>
+  </data>
+  <data name="EmailConfirmationSubject" xml:space="preserve">
+    <value>Confirmação de e-mail</value>
+  </data>
+  <data name="EmailConfirmationSent" xml:space="preserve">
+    <value>As instruções para permitir que seu usuário foi enviado por email</value>
+  </data>
+  <data name="UserNotFoundError" xml:space="preserve">
+    <value>Erro de usuário não encontrado</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Resetar a senha</value>
+  </data>
+  <data name="RecoverPasswordBody" xml:space="preserve">
+    <value>Para redefinir a senha, clique neste link</value>
+  </data>
+  <data name="RecoverPasswordEmailSent" xml:space="preserve">
+    <value>As instruções para recuperar sua senha foram enviadas para o email</value>
+  </data>
 </root>

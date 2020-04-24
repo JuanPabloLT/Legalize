@@ -24,18 +24,21 @@ namespace Legalize.Web.Controllers.API
         private readonly IConverterHelper _converterHelper;
         private readonly ILegalizeHelper _legalizeHelper;
         private readonly IExpenseTyperHelper _expenseTyperHelper;
+        private readonly IImageHelper _imageHelper;
 
         public TripsController(DataContext context,
             IUserHelper userHelper,
             IConverterHelper converterHelper,
             ILegalizeHelper legalizeHelper,
-            IExpenseTyperHelper expenseTyperHelper)
+            IExpenseTyperHelper expenseTyperHelper,
+            IImageHelper imageHelper)
         {
             _context = context;
             _userHelper = userHelper;
             _converterHelper = converterHelper;
             _legalizeHelper = legalizeHelper;
             _expenseTyperHelper = expenseTyperHelper;
+            _imageHelper = imageHelper;
         }
 
         // POST: api/Trips/
@@ -62,12 +65,18 @@ namespace Legalize.Web.Controllers.API
                 return BadRequest(Resource.ExpenseTypeDoesntExists);
             }
 
+            string picturePath = string.Empty;
+            if (tripRequest.PicturePath != null && tripRequest.PicturePath.Length > 0)
+            {
+                picturePath = _imageHelper.UploadImage(tripRequest.PicturePath, "TripsPictures");
+            }
+
             TripEntity tripEntity = new TripEntity
             {
                 Date = tripRequest.Date,
                 Amount = tripRequest.Amount ,
                 Description = tripRequest.Description,
-                PicturePath = tripRequest.PicturePath,
+                PicturePath = picturePath,
                 Legalize = legalizeEntity,
                 ExpenseType = expenseTypeEntity
             };

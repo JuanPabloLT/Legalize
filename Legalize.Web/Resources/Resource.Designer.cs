@@ -133,6 +133,15 @@ namespace Legalize.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Email.
+        /// </summary>
+        public static string ConfirmEmail {
+            get {
+                return ResourceManager.GetString("ConfirmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string Contact {
@@ -165,6 +174,33 @@ namespace Legalize.Web.Resources {
         public static string Document {
             get {
                 return ResourceManager.GetString("Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To allow the user, plase click in this link.
+        /// </summary>
+        public static string EmailConfirmationBody {
+            get {
+                return ResourceManager.GetString("EmailConfirmationBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The instructions to allow your user has been sent to email.
+        /// </summary>
+        public static string EmailConfirmationSent {
+            get {
+                return ResourceManager.GetString("EmailConfirmationSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email confirmation.
+        /// </summary>
+        public static string EmailConfirmationSubject {
+            get {
+                return ResourceManager.GetString("EmailConfirmationSubject", resourceCulture);
             }
         }
         
@@ -313,6 +349,33 @@ namespace Legalize.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To reset the password click in this link.
+        /// </summary>
+        public static string RecoverPasswordBody {
+            get {
+                return ResourceManager.GetString("RecoverPasswordBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The instructions to recover your password has been sent to email.
+        /// </summary>
+        public static string RecoverPasswordEmailSent {
+            get {
+                return ResourceManager.GetString("RecoverPasswordEmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User password reset.
+        /// </summary>
+        public static string RecoverPasswordSubject {
+            get {
+                return ResourceManager.GetString("RecoverPasswordSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register new user.
         /// </summary>
         public static string RegisterNewUser {
@@ -331,11 +394,29 @@ namespace Legalize.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Already Exists.
+        /// </summary>
+        public static string UserAlreadyExists {
+            get {
+                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User doesn&apos;t exists.
         /// </summary>
         public static string UserDoesntExists {
             get {
                 return ResourceManager.GetString("UserDoesntExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found error.
+        /// </summary>
+        public static string UserNotFoundError {
+            get {
+                return ResourceManager.GetString("UserNotFoundError", resourceCulture);
             }
         }
     }

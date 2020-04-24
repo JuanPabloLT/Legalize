@@ -33,6 +33,9 @@ namespace Legalize.Prism.Helpers
         public static string WELCOME => Resource.WELCOME;
         public static string Menu => Resource.Menu;
         public static string SeeEmployeeHistory => Resource.SeeEmployeeHistory;
+        public static string ConfirmEmail => Resource.ConfirmEmail;
+        public static string EmailConfirmationBody => Resource.EmailConfirmationBody;
+        public static string EmailConfirmationSubject => Resource.EmailConfirmationSubject;
 
 
     }

@@ -26,7 +26,7 @@ namespace Legalize.Web.Helpers
             return $"~/images/{folder}/{file}";
         }
 
-        /*public string UploadImage(byte[] pictureArray, string folder)
+        public string UploadImage(byte[] pictureArray, string folder)
         {
             MemoryStream stream = new MemoryStream(pictureArray);
             string guid = Guid.NewGuid().ToString();
@@ -44,6 +44,6 @@ namespace Legalize.Web.Helpers
             }
 
             return $"~/images/{folder}/{file}";
-        }*/
+        }
     }
 }
