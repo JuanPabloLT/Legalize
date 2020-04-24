@@ -35,8 +35,9 @@ namespace Legalize.Web.Controllers.API
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> PostTripEntity([FromBody] TripRequest tripRequest)
+        /*[HttpPost]
+        [Route("GetTripsForUser")]
+        public async Task<IActionResult> PostTripEntity([FromBody] TripForUserRequest Request)
         {
             if (!ModelState.IsValid)
             {
@@ -63,6 +64,6 @@ namespace Legalize.Web.Controllers.API
             _context.Trips.Add(tripEntity);
             await _context.SaveChangesAsync();
             return Ok(_converterHelper.ToTripResponse(tripEntity));
-        }
+        }*/
     }
 }

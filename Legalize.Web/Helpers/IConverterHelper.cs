@@ -13,7 +13,10 @@ namespace Legalize.Web.Helpers
         LegalizeResponse ToLegalizeResponse2(LegalizeEntity legalize);
         LegalizeResponse ToLegalizeResponse(LegalizeEntity legalize);
         List <LegalizeResponse> ToLegalizeResponse(List<LegalizeEntity> legalizeEntities);
-        TripResponse ToTripResponse(TripEntity trip);
+
+        TripResponse ToTripResponse(TripEntity tripEntity);
+
+
         CityResponse ToCityResponse(CityEntity city);
         UserResponse ToUserResponse(UserEntity user);
         TripEntity ToTipEntity(TripViewModel tripViewModel, string path, bool isNew);
