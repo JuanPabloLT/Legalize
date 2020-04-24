@@ -25,7 +25,7 @@ namespace Legalize.Prism.Helpers
         public static string HomePage => Resource.HomePage;
         public static string Legalize => Resource.Legalize;
         public static string LegalizeHistory => Resource.LegalizeHistory;
-        public static string Login => Resource.Login;
+        public static string LogIn => Resource.Login;
         public static string Logout => Resource.Logout;
         public static string ModifyUser => Resource.ModifyUser;
         public static string Trip => Resource.Trip;
@@ -36,7 +36,20 @@ namespace Legalize.Prism.Helpers
         public static string ConfirmEmail => Resource.ConfirmEmail;
         public static string EmailConfirmationBody => Resource.EmailConfirmationBody;
         public static string EmailConfirmationSubject => Resource.EmailConfirmationSubject;
+        public static string Email => Resource.Email;
 
+        public static string EmailPlaceHolder => Resource.EmailPlaceHolder;
+
+        public static string EmailError => Resource.EmailError;
+
+        public static string Password => Resource.Password;
+
+        public static string PasswordError => Resource.PasswordError;
+
+        public static string PasswordPlaceHolder => Resource.PasswordPlaceHolder;
+
+        public static string Register => Resource.Register;
+        public static string ChangePasswordSuccess => Resource.ChangePasswordSuccess;
 
     }
 }

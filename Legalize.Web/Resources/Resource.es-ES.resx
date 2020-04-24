@@ -237,4 +237,7 @@
   <data name="RecoverPasswordEmailSent" xml:space="preserve">
     <value>Las instrucciones para recuperar su contraseña han sido enviadas por correo electrónico</value>
   </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Tu contraseña ha sido cambiada</value>
+  </data>
 </root>

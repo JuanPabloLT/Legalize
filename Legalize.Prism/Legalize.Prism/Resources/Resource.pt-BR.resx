@@ -180,4 +180,28 @@
   <data name="EmailConfirmationSent" xml:space="preserve">
     <value>As instruções para permitir que seu usuário foi enviado por email</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailPlaceHolder" xml:space="preserve">
+    <value>Insira seu e-mail</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Você precisa inserir o seu endereço de email.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="PasswordPlaceHolder" xml:space="preserve">
+    <value>Digite sua senha</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Insira uma senha.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Mude a senha com sucesso</value>
+  </data>
 </root>

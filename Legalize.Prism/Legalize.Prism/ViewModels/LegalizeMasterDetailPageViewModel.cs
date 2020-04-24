@@ -36,19 +36,19 @@ namespace Legalize.Prism.ViewModels
                 {
                     Icon = "ic_add_circle",
                     PageName = "HomePage",
-                    Title = Languages.AddTripRecord
+                    Title = Languages.AddTripRecord,
                 },
-                new Menu
+                /*new Menu
                 {
                     Icon = "ic_view_list",
                     PageName = "LegalizeHistoryPage",
                     Title = Languages.SeeEmployeeHistory
-                },
+                },*/
                 new Menu
                 {
                     Icon = "ic_build",
                     PageName = "ModifyUserPage",
-                    Title = Languages.ModifyUser
+                    Title = Languages.ModifyUser,
                 },
                 /*new Menu
                 {
@@ -60,7 +60,7 @@ namespace Legalize.Prism.ViewModels
                 {
                     Icon = "ic_exit_to_app",
                     PageName = "LoginPage",
-                    Title = Languages.Login
+                    Title = Languages.LogIn,
                 }
             };
 

@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Legalize.Common.Services;
 using Syncfusion.Licensing;
+using Legalize.Prism.Interfaces;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Legalize.Prism
@@ -22,7 +23,7 @@ namespace Legalize.Prism
             
             SyncfusionLicenseProvider.RegisterLicense("MjQxMTQzQDMxMzgyZTMxMmUzMElHdUYvVFZFeEZVK2V6YXdTY1J1Y1doalNMT1JJbTc2a085L2ZWTlk1TUU9");
             InitializeComponent();
-            await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/HomePage");
+            await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
