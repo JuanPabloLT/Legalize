@@ -26,6 +26,8 @@ namespace Legalize.Web.Helpers
         Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
         Task<IdentityResult> UpdateUserAsync(UserEntity user);
 
+        Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
+
         /*Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
@@ -34,13 +36,11 @@ namespace Legalize.Web.Helpers
 
         Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token);
 
-        
-
         Task<UserEntity> GetUserAsync(string email);
 
         Task<UserEntity> GetUserAsync(Guid userId);
 
-        Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
+        
 
         */
     }

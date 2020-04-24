@@ -11,12 +11,15 @@ using Legalize.Web.Helpers;
 using Legalize.Common.Models;
 using System.Globalization;
 using Legalize.Web.Resources;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Legalize.Web.Controllers.API
 {
     
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LegalizesController : ControllerBase
     {
         private readonly DataContext _context;
