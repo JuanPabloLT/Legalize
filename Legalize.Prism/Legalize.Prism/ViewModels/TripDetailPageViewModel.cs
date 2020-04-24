@@ -11,7 +11,7 @@ namespace Legalize.Prism.ViewModels
 {
     public class TripDetailPageViewModel : ViewModelBase
     {
-        private TripResponse _trip;
+        private LegalizeResponse _trip;
         private readonly IApiService _apiService;
 
         public TripDetailPageViewModel(INavigationService navigationService,
@@ -21,22 +21,21 @@ namespace Legalize.Prism.ViewModels
             Title = "Trip Detail";
         }
 
-        public TripResponse Trip
+        public LegalizeResponse Trip
         {
             get => _trip;
             set => SetProperty(ref _trip, value);
         }
-
-
-        
-        
+ 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            if (parameters.ContainsKey("trip"))
+
+            if (parameters.ContainsKey("legalize"))
             {
-                Trip = parameters.GetValue<TripResponse>("trip");
+                _trip = parameters.GetValue<LegalizeResponse>("legalize");
+                Title = "Trip"+" "+_trip.Id.ToString()+" from" +" "+_trip.User.FirstName+"";
             }
         }
 

@@ -10,7 +10,7 @@
              BackgroundColor="{StaticResource ColorBackground}"
              Title = "{Binding Title}">
 
-    <StackLayout Padding="5">
+   <!-- <StackLayout Padding="5">
         
         <StackLayout HorizontalOptions="Center" 
                      Orientation="Horizontal">
@@ -45,6 +45,6 @@
                    Grid.Row="1"
                    Text="{Binding Legalize.EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"/>
         </Grid>
-    </StackLayout>
+    </StackLayout>-->
 
 </ContentPage>

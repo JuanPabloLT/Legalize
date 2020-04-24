@@ -12,8 +12,8 @@ namespace Legalize.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private List<LegalizeResponse> _legalize;
-        private List<TripItemViewModel> _details;
+        private List<LegalizeHistoryItemViewModel> _legalize;
+        //private List<LegalizeHistoryItemViewModel> _details;
         private bool _isRunning;
         //private DelegateCommand _checkEmployeeIdCommand;
 
@@ -27,7 +27,7 @@ namespace Legalize.Prism.ViewModels
             LoadLegalizesAsync();
         }
 
-        public List<LegalizeResponse> Legalize
+        public List<LegalizeHistoryItemViewModel> Legalize
         {
             get => _legalize;
             set => SetProperty(ref _legalize, value);
@@ -40,16 +40,12 @@ namespace Legalize.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        public List<TripItemViewModel> Details
+        /*public List<LegalizeHistorytemViewModel> Details
         {
             get => _details;
             set => SetProperty(ref _details, value);
-        }
+        }*/
 
-
-        public int Id { get; set; }
-
-        //public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
 
         private async void LoadLegalizesAsync()
         {
@@ -76,16 +72,18 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
-            Legalize = (List<LegalizeResponse>)response.Result;
-            /*Details = Legalize.Trips.Select(tr => new TripItemViewModel(_navigationService)
+            var legalize = (List<LegalizeResponse>)response.Result;
+
+            Legalize = legalize.Select(l => new LegalizeHistoryItemViewModel(_navigationService)
             {
-                Id = tr.Id,
-                Date = tr.Date,
-                Amount = tr.Amount,
-                Description = tr.Description,
-                PicturePath = tr.PicturePath,
-                ExpenseType = tr.ExpenseType,
-            }).ToList();*/
+                Id = l.Id,
+                StartDate = l.StartDate,
+                EndDate = l.EndDate,
+                City = l.City,
+                User = l.User,
+                Trips = l.Trips,
+                
+            }).ToList();
         }
     }
 }

@@ -23,6 +23,9 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectLegalizeCommand}"/>
+                            </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.2*" />
                                 <ColumnDefinition Width="1*" />
