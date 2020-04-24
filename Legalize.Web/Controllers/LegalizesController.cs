@@ -90,7 +90,7 @@ namespace Legalize.Web.Controllers
 
                     if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Already exists a trip with the same id.");
+                        ModelState.AddModelError(string.Empty, "Already exists a legalize with the same id.");
                     }
                     else
                     {

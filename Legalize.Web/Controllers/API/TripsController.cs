@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Legalize.Web.Controllers.API
 {
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class TripsController : ControllerBase
     {
@@ -65,18 +65,18 @@ namespace Legalize.Web.Controllers.API
                 return BadRequest(Resource.ExpenseTypeDoesntExists);
             }
 
-            string picturePath = string.Empty;
+            /*string picturePath = string.Empty;
             if (tripRequest.PicturePath != null && tripRequest.PicturePath.Length > 0)
             {
                 picturePath = _imageHelper.UploadImage(tripRequest.PicturePath, "TripsPictures");
-            }
+            }*/
 
             TripEntity tripEntity = new TripEntity
             {
                 Date = tripRequest.Date,
                 Amount = tripRequest.Amount ,
                 Description = tripRequest.Description,
-                PicturePath = picturePath,
+                PicturePath = tripRequest.PicturePath,
                 Legalize = legalizeEntity,
                 ExpenseType = expenseTypeEntity
             };

@@ -21,7 +21,7 @@ namespace Legalize.Common.Services
                     BaseAddress = new Uri(urlBase),
                 };
 
-                string url = $"{servicePrefix}{controller}/";
+                string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.GetAsync(url);
                 string result = await response.Content.ReadAsStringAsync();
 

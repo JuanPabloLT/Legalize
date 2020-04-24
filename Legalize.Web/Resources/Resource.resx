@@ -135,6 +135,9 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Your password as been changed</value>
+  </data>
   <data name="CityDoesntExists" xml:space="preserve">
     <value>City doesn't exists</value>
   </data>

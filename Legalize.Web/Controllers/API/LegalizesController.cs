@@ -19,7 +19,7 @@ namespace Legalize.Web.Controllers.API
     
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LegalizesController : ControllerBase
     {
         private readonly DataContext _context;
@@ -64,8 +64,9 @@ namespace Legalize.Web.Controllers.API
             return Ok(_converterHelper.ToLegalizeResponse(legalizeEntity));
         }
 
-        // GET: api/Legalizes/
+        // GET: api/Legalizes/GetLegalizeEntity
         [HttpGet]
+        [Route("GetLegalizeEntity")]
         public async Task<IActionResult> GetLegalizeEntity()
         {
             List<LegalizeEntity> legalizes = await _context.Legalizes
@@ -78,8 +79,9 @@ namespace Legalize.Web.Controllers.API
             return Ok(_converterHelper.ToLegalizeResponse(legalizes));
         }
 
-        // POST: api/Legalizes/
+        // POST: api/Legalizes/PostLegalizeEntity
         [HttpPost]
+        [Route("PostLegalizeEntity")]
         public async Task<IActionResult> PostLegalizeEntity([FromBody] LegalizeRequest legalizeRequest)
         {
             if (!ModelState.IsValid)
@@ -91,10 +93,10 @@ namespace Legalize.Web.Controllers.API
             Resource.Culture = cultureInfo;
 
             UserEntity userEntity = await _userHelper.GetUserAsync(legalizeRequest.UserId);
-            /*if (userEntity == null)
+            if (userEntity == null)
             {
                 return BadRequest(Resource.UserDoesntExists);
-            }*/
+            }
 
             CityEntity cityEntity = await _citierHelper.GetCityAsync(legalizeRequest.City);
             if (cityEntity == null)
