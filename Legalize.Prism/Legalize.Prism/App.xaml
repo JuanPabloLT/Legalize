@@ -8,7 +8,7 @@
         <ResourceDictionary>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">https://legalizewebpablo.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlAPI">https://legalizewebpablolondono.azurewebsites.net/</x:String>
 
             <!-- Colors -->
             <Color  x:Key="ColorBackground">#F2F2F2</Color>

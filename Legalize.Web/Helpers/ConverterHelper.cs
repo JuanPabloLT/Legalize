@@ -1,6 +1,7 @@
 ﻿using Legalize.Common.Models;
 using Legalize.Web.Data.Entities;
 using Legalize.Web.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -40,6 +41,16 @@ namespace Legalize.Web.Helpers
                     ExpenseType = ToExpenseTypeResponse(tr.ExpenseType),
                 }).ToList(),
             };
+        }
+
+        public List<LegalizeResponse> ToLegalizeResponse(List<LegalizeEntity> legalizeEntities)
+        {
+            List<LegalizeResponse> list = new List<LegalizeResponse>();
+            foreach (LegalizeEntity legalizeEntity in legalizeEntities)
+            {
+                list.Add(ToLegalizeResponse(legalizeEntity));
+            }
+            return list;
         }
 
         public TripResponse ToTripResponse(TripEntity tripEntity)

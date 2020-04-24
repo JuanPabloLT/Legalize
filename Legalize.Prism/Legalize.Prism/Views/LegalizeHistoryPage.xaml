@@ -15,99 +15,62 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-        <StackLayout Orientation="Horizontal">
-            <Label Text="IdTrip"
-                   VerticalOptions="Center"/>
-            <Entry HorizontalOptions="FillAndExpand" 
-                   Placeholder="Enter Id trip..." 
-                   Text="{Binding Id}"
-                   VerticalOptions="Center"/>
-            <Button Command="{Binding CheckEmployeeIdCommand}"
-                    Margin="10,0"
-                    Text="Check"/>
-        </StackLayout>
-        <Label FontAttributes="Bold" 
-               FontSize="48"
-               HorizontalOptions="Center"
-               Text="{Binding Legalize.TotalAmountTrip, StringFormat='{0:N0}'}"/>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Number of trips:"/>
-            <Label Text="{Binding Legalize.NumberOfTrips, StringFormat='{0:N0}'}"/>
-        </StackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width=".8*" />
-                <ColumnDefinition Width=".8*" />
-                <ColumnDefinition Width=".8*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="48" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   FontAttributes="Bold"
-                   Text="Id"/>
-            <Label Grid.Column="1"
-                   FontAttributes="Bold"
-                   Text="Start Date"/>
-            <Label Grid.Column="2"
-                   FontAttributes="Bold"
-                   Text="End Date"/>
-            <Label Grid.Column="3"
-                   FontAttributes="Bold"
-                   Text="City"/>
-            <Label Grid.Column="4"
-                   FontAttributes="Bold"
-                   Text="Trip Amount"/>
-            <Label Grid.Column="5"
-                   FontAttributes="Bold"
-                   Text="Details"/>
-        </Grid>
-
-        <CollectionView ItemsSource="{Binding Details}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectTripCommand}">
-                                    
-                                </TapGestureRecognizer>
-                            </Grid.GestureRecognizers>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width=".8*" />
-                            <ColumnDefinition Width=".8*" />
-                            <ColumnDefinition Width=".8*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"
-                               Text="{Binding Id}"
-                               VerticalOptions="Center"/>
-                            <Label Grid.Column="1"
-                               Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
-                               VerticalOptions="Center"/>
-                            <Label Grid.Column="2"
-                               Text="{Binding EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
-                               VerticalOptions="Center"/>
-                            <Label Grid.Column="3"
-                               Text="{Binding City}"
-                               VerticalOptions="Center"/>
-                            <Label Grid.Column="4"
-                               Text="{Binding TotalAmountTrip}"
-                               VerticalOptions="Center"/>
-                        <Image Grid.Column="5" 
+    
+            <CollectionView ItemsSource="{Binding Legalize}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0"
+                                     VerticalOptions="Center">
+                                <Label Text="{Binding Id}" 
+                                   FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"
+                                     VerticalOptions="Center">
+                                <Label Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd HH:mm}'}"
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="Start" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="2"
+                                     VerticalOptions="Center">
+                                <Label Text="{Binding EndDateLocal, StringFormat='{0:yyyy/MM/dd HH:mm}'}"    
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="Start"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="3"
+                                     VerticalOptions="Center">
+                                <Label Text="{Binding City.Name}" 
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="Center"
+                                   LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="4"
+                                     VerticalOptions="Center">
+                                    <Label Text="{Binding TotalAmountTrip}" 
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="Center"
+                                   LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            <Image Grid.Column="5" 
                                Source="ic_library_add"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Rectangle" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
@@ -120,7 +83,6 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    
-</AbsoluteLayout>
+    </AbsoluteLayout>
 
 </ContentPage>

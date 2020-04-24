@@ -12,10 +12,10 @@ namespace Legalize.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private LegalizeResponse _legalize;
+        private List<LegalizeResponse> _legalize;
         private List<TripItemViewModel> _details;
         private bool _isRunning;
-        private DelegateCommand _checkEmployeeIdCommand;
+        //private DelegateCommand _checkEmployeeIdCommand;
 
         public LegalizeHistoryPageViewModel(
             INavigationService navigationService,
@@ -24,9 +24,10 @@ namespace Legalize.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = "Legalize History";
+            LoadLegalizesAsync();
         }
-        
-        public LegalizeResponse Legalize
+
+        public List<LegalizeResponse> Legalize
         {
             get => _legalize;
             set => SetProperty(ref _legalize, value);
@@ -48,22 +49,14 @@ namespace Legalize.Prism.ViewModels
 
         public int Id { get; set; }
 
-        public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
+        //public DelegateCommand CheckEmployeeIdCommand => _checkEmployeeIdCommand ?? (_checkEmployeeIdCommand = new DelegateCommand(CheckEmployeeIdAsync));
 
-        private async void CheckEmployeeIdAsync()
+        private async void LoadLegalizesAsync()
         {
-            if (string.IsNullOrEmpty(Id.ToString()))
-            {
-                await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a trip Id.",
-                    "Accept");
-                return;
-            }
 
             IsRunning = true;
-            var url = App.Current.Resources["UrlAPI"].ToString();
-            var connection = await _apiService.CheckConnectionAsync(url);
+            string url = App.Current.Resources["UrlAPI"].ToString();
+           var connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
                 IsRunning = false;
@@ -71,9 +64,9 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
-            Response response = await _apiService.GetLegalizeAsync(Id, url, "api", "/Legalizes");
-            IsRunning = false;
+            Response response = await _apiService.GetListAsync<LegalizeResponse>(url, "api", "/Legalizes");
 
+            IsRunning = false;
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
@@ -83,15 +76,16 @@ namespace Legalize.Prism.ViewModels
                 return;
             }
 
-            Legalize = (LegalizeResponse)response.Result;
-            Details = Legalize.Trips.Select(tr => new TripItemViewModel(_navigationService)
+            Legalize = (List<LegalizeResponse>)response.Result;
+            /*Details = Legalize.Trips.Select(tr => new TripItemViewModel(_navigationService)
             {
                 Id = tr.Id,
                 Date = tr.Date,
                 Amount = tr.Amount,
                 Description = tr.Description,
                 PicturePath = tr.PicturePath,
-            }).ToList();
+                ExpenseType = tr.ExpenseType,
+            }).ToList();*/
         }
     }
 }

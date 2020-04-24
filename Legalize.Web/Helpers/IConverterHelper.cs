@@ -12,6 +12,7 @@ namespace Legalize.Web.Helpers
     {
         LegalizeResponse ToLegalizeResponse2(LegalizeEntity legalize);
         LegalizeResponse ToLegalizeResponse(LegalizeEntity legalize);
+        List <LegalizeResponse> ToLegalizeResponse(List<LegalizeEntity> legalizeEntities);
         TripResponse ToTripResponse(TripEntity trip);
         CityResponse ToCityResponse(CityEntity city);
         UserResponse ToUserResponse(UserEntity user);

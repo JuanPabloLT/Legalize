@@ -11,8 +11,9 @@ using Legalize.Web.Helpers;
 
 namespace Legalize.Web.Controllers.API
 {
-    [Route("api/[controller]")]
+    
     [ApiController]
+    [Route("api/[controller]")]
     public class LegalizesController : ControllerBase
     {
         private readonly DataContext _context;
@@ -49,6 +50,20 @@ namespace Legalize.Web.Controllers.API
             return Ok(_converterHelper.ToLegalizeResponse(legalizeEntity));
         }
 
-        
+        // GET: api/Legalizes/
+        [HttpGet]
+        public async Task<IActionResult> GetLegalizeEntity()
+        {
+            List<LegalizeEntity> legalizes = await _context.Legalizes
+                .Include(t => t.Trips)
+                .Include(t => t.User)
+                .Include(t => t.City)
+                .Include(t => t.Trips)
+                .ThenInclude(t => t.ExpenseType)
+                .ToListAsync();
+            return Ok(_converterHelper.ToLegalizeResponse(legalizes));
+        }
+
+
     }
 }

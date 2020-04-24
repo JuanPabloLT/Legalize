@@ -33,7 +33,6 @@ namespace Legalize.Prism
             containerRegistry.RegisterForNavigation<LegalizeMasterDetailPage, LegalizeMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<LegalizeHistoryPage, LegalizeHistoryPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
-            containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<TripDetailPage, TripDetailPageViewModel>();
         }

@@ -49,12 +49,12 @@ namespace Legalize.Prism.ViewModels
                     PageName = "ModifyUserPage",
                     Title = "Modify User"
                 },
-                new Menu
+                /*new Menu
                 {
                     Icon = "ic_report_problem",
                     PageName = "ReportPage",
                     Title = "Report An Incident"
-                },
+                },*/
                 new Menu
                 {
                     Icon = "ic_exit_to_app",

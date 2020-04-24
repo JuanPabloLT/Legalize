@@ -12,7 +12,7 @@ namespace Legalize.Common.Services
     public class ApiService : IApiService
     {
 
-        public async Task<Response> GetLegalizeAsync(int Id, string urlBase, string servicePrefix, string controller)
+        public async Task<Response> GetLegalizeAsync(string urlBase, string servicePrefix, string controller)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace Legalize.Common.Services
                     BaseAddress = new Uri(urlBase),
                 };
 
-                string url = $"{servicePrefix}{controller}/{Id}";
+                string url = $"{servicePrefix}{controller}/";
                 HttpResponseMessage response = await client.GetAsync(url);
                 string result = await response.Content.ReadAsStringAsync();
 
@@ -51,6 +51,44 @@ namespace Legalize.Common.Services
             }
         }
 
+        public async Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase),
+                };
+
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
         public async Task<bool> CheckConnectionAsync(string url)
         {
             if (!CrossConnectivity.Current.IsConnected)
@@ -61,6 +99,7 @@ namespace Legalize.Common.Services
             return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
 
+        
     }
 
 }
