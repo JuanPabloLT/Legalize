@@ -20,6 +20,10 @@ namespace Legalize.Common.Models
         public string FullName => $"{FirstName} {LastName}";
 
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+    ? "https://legalizewebpablolondono.azurewebsites.net//images/noimage.png"
+    : $"https://legalizewebpablolondono.azurewebsites.net{PicturePath.Substring(1)}";
+
 
     }
 }

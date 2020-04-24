@@ -2,6 +2,7 @@
 using Legalize.Common.Models;
 using Legalize.Common.Services;
 using Legalize.Prism.Helpers;
+using Legalize.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -125,16 +126,18 @@ namespace Legalize.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            await _navigationService.NavigateAsync("/TaxiMasterDetailPage/NavigationPage/HomePage");
+            await _navigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/HomePage");
             Password = string.Empty;
 
         }
 
 
-        private void RegisterAsync()
-            {
-            }
-        
+        private async void RegisterAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RegisterPage));
+        }
+
+
 
     }
 }

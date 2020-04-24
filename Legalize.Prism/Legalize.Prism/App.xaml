@@ -9,7 +9,7 @@
 
             <!-- Parameters -->
             <x:String x:Key="UrlAPI">https://legalizewebpablolondono.azurewebsites.net/</x:String>
-
+            
             <!-- Colors -->
             <Color  x:Key="ColorBackground">#F2F2F2</Color>
             <Color  x:Key="ColorPrimary">#F2CB05</Color>

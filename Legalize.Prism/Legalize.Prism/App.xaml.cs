@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Legalize.Common.Services;
 using Syncfusion.Licensing;
 using Legalize.Prism.Interfaces;
+using Legalize.Common.Helpers;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Legalize.Prism
@@ -23,12 +24,13 @@ namespace Legalize.Prism
             
             SyncfusionLicenseProvider.RegisterLicense("MjQxMTQzQDMxMzgyZTMxMmUzMElHdUYvVFZFeEZVK2V6YXdTY1J1Y1doalNMT1JJbTc2a085L2ZWTlk1TUU9");
             InitializeComponent();
-            await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("/LegalizeMasterDetailPage/NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<LegalizeMasterDetailPage, LegalizeMasterDetailPageViewModel>();
@@ -36,6 +38,8 @@ namespace Legalize.Prism
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<TripDetailPage, TripDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+
         }
     }
 }

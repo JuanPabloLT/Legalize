@@ -26,8 +26,8 @@ namespace Legalize.Prism.ViewModels
             //_instance = this;
             _navigationService = navigationService;
             //_apiService = apiService;
-            LoadUser();
             LoadMenus();
+            LoadUser();
         }
 
         public UserResponse User
@@ -51,12 +51,7 @@ namespace Legalize.Prism.ViewModels
         {
             List<Menu> menus = new List<Menu>
             {
-                new Menu
-                {
-                Icon = "login",
-                PageName = "LoginPage",
-                Title = Settings.IsLogin ? Languages.Logout : Languages.LogIn
-                },
+                
                 new Menu
                 {
                     Icon = "ic_add_circle",
@@ -83,10 +78,10 @@ namespace Legalize.Prism.ViewModels
                 },*/
                 new Menu
                 {
-                    Icon = "ic_exit_to_app",
-                    PageName = "LoginPage",
-                    Title = Languages.LogIn,
-                }
+                Icon = "ic_exit_to_app",
+                PageName = "LoginPage",
+                Title = Settings.IsLogin ? Languages.Logout : Languages.LogIn
+                },
             };
 
             Menus = new ObservableCollection<MenuItemViewModel>(

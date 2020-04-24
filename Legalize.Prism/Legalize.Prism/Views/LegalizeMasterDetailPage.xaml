@@ -5,6 +5,8 @@
                   prism:ViewModelLocator.AutowireViewModel="True"
                   xmlns:i18n="clr-namespace:Legalize.Prism.Helpers"
                   xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                  xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                   ios:Page.UseSafeArea="true"
                   x:Class="Legalize.Prism.Views.LegalizeMasterDetailPage"
                   Title = "{Binding Title}">
@@ -14,10 +16,32 @@
             <StackLayout Padding="20">
                 <Image HeightRequest="150"
                        Source="IconoLegalize"/>
-                <Label FontAttributes="Bold"
-        FontSize="Large"
-        Text="{Binding User.FullName}"
-        TextColor="Black"/>
+                <RelativeLayout>
+                    <Image x:Name="Logo" HorizontalOptions="Center"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
+                           HeightRequest="100"
+                           Source="legalize"/>
+                    <ffimageloading:CachedImage x:Name="Picture" 
+                                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=30}"
+                                                Aspect="AspectFit"
+                                                Source="{Binding User.PictureFullPath}" 
+                                                CacheDuration= "50"
+                                                HeightRequest="100"
+                                                Margin="5"
+                                                RetryCount= "3"
+                                                RetryDelay= "600"
+                                                WidthRequest="150" >
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation />
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Picture,Property=Y,Factor=1,Constant=110}"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Text="{Binding User.FullName}"
+                           TextColor="Black"/>
+                </RelativeLayout>
+
 
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"
