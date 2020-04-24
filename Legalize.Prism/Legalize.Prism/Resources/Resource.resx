@@ -204,4 +204,7 @@
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Change Password Success</value>
   </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Login Error</value>
+  </data>
 </root>

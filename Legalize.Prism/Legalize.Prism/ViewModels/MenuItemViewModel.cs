@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Legalize.Common.Models;
+using Legalize.Common.Helpers;
 
 namespace Legalize.Prism.ViewModels
 {
@@ -18,13 +19,12 @@ namespace Legalize.Prism.ViewModels
 
         private async void SelectMenuAsync()
         {
-            /*if (PageName == "LoginPage" && Settings.IsLogin)
+            if (PageName == "LoginPage" && Settings.IsLogin)
             {
                 Settings.IsLogin = false;
                 Settings.User = null;
                 Settings.Token = null;
-            }*/
-
+            }
             await _navigationService.NavigateAsync($"/LegalizeMasterDetailPage/NavigationPage/{PageName}");
         }
     }

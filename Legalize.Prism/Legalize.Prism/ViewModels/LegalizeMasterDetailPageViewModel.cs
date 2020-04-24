@@ -1,5 +1,7 @@
-﻿using Legalize.Common.Models;
+﻿using Legalize.Common.Helpers;
+using Legalize.Common.Models;
 using Legalize.Prism.Helpers;
+using Newtonsoft.Json;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +14,7 @@ namespace Legalize.Prism.ViewModels
     public class LegalizeMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private UserResponse _user;
         //private readonly IApiService _apiService;
         //private UserResponse _user;
         //private DelegateCommand _modifyUserCommand;
@@ -23,15 +26,37 @@ namespace Legalize.Prism.ViewModels
             //_instance = this;
             _navigationService = navigationService;
             //_apiService = apiService;
-            //LoadUser();
+            LoadUser();
             LoadMenus();
         }
+
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            }
+        }
+
+
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         private void LoadMenus()
         {
             List<Menu> menus = new List<Menu>
             {
+                new Menu
+                {
+                Icon = "login",
+                PageName = "LoginPage",
+                Title = Settings.IsLogin ? Languages.Logout : Languages.LogIn
+                },
                 new Menu
                 {
                     Icon = "ic_add_circle",
@@ -86,7 +111,7 @@ namespace Legalize.Prism.ViewModels
             return _instance;
         }*/
 
-        
+
 
         /*private async void ModifyUserAsync()
         {
@@ -101,6 +126,6 @@ namespace Legalize.Prism.ViewModels
             }
         }*/
 
-       
+
     }
 }

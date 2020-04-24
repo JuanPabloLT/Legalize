@@ -223,6 +223,15 @@ namespace Legalize.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login Error.
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log Out.
         /// </summary>
         public static string Logout {
