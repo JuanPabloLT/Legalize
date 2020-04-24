@@ -58,12 +58,12 @@ namespace Legalize.Prism.ViewModels
                     PageName = "HomePage",
                     Title = Languages.AddTripRecord,
                 },
-                /*new Menu
+                new Menu
                 {
                     Icon = "ic_view_list",
                     PageName = "LegalizeHistoryPage",
                     Title = Languages.SeeEmployeeHistory
-                },*/
+                },
                 new Menu
                 {
                     Icon = "ic_build",
